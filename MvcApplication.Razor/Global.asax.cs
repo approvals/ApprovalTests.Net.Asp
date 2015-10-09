@@ -1,7 +1,12 @@
-﻿using System.Web;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ApprovalTests.Asp.Mvc.Bindings;
+using ApprovalUtilities.SimpleLogger;
 using ApprovalUtilities.Utilities;
 
 namespace MvcApplication1
@@ -34,11 +39,22 @@ namespace MvcApplication1
 
 		protected void Application_Start()
 		{
+            Logger.Writer = new DebugerWriter();
+           
 			AreaRegistration.RegisterAllAreas();
 
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
-		    UnitTestBootStrap.Register();
+		    //UnitTestBootStrap.Register();
+            ControllerBuilder.Current.SetControllerFactory(typeof(UnitTestControllerFactory));
 		}
 	}
+  
+    public class DebugerWriter : IAppendable
+    {
+        public void AppendLine(string text)
+        {
+            Debug.WriteLine(text);
+        }
+    }
 }

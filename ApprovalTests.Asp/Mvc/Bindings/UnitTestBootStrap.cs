@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Web.Mvc;
+using ApprovalUtilities.SimpleLogger;
 
 namespace ApprovalTests.Asp.Mvc.Bindings
 {
@@ -14,7 +10,13 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         [Conditional("DEBUG")]
         public static void Register()
         {
-            ControllerBuilder.Current.SetControllerFactory(typeof(UnitTestControllerFactory));
+            using (Logger.MarkEntryPoints())
+            {
+                ControllerBuilder.Current.SetControllerFactory(typeof(UnitTestControllerFactory));
+                Logger.Variable("factory", ControllerBuilder.Current.GetControllerFactory().GetType().FullName);
+            }
+           
+           
         }
     }
 }

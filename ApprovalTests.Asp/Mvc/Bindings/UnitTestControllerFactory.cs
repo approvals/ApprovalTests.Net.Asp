@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.SessionState;
 using System.Reflection;
-using ApprovalTests.Utilities;
 using System.Web.Routing;
-using ApprovalTests.Asp.Mvc;
+using ApprovalUtilities.SimpleLogger;
 
 namespace ApprovalTests.Asp.Mvc.Bindings
 {
@@ -18,6 +13,10 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         private const string CONTROLLER_UNDER_TEST = "CONTROLLER_UNDER_TEST";
         private const string CONTROLLER_NAME = "controller";
 
+        public UnitTestControllerFactory()
+        {
+            Logger.Event("Added ApprovalTests Bootstrap");
+        }
         protected override Type GetControllerType(RequestContext requestContext, string controllerName)
         {
             var requestItems = requestContext.HttpContext.Items;

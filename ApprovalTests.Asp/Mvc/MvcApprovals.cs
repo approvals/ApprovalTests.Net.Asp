@@ -117,7 +117,7 @@ namespace ApprovalTests.Asp.Mvc
                 }
                 if (webEx != null && webEx.Response != null && (webEx.Response as HttpWebResponse).StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw Exceptional.Create<Exception>(ex, "Please verify your code for the following steps. \r\n {0} \r\n {1} \r\n\r\n", "1. ApprovalTests.Core.Asp.Mvc.UnitTestBootStrap.Register() added in Global.asax.cs", "2. Test class is inherited from ApprovalTests.Asp.Mvc.TestableController<T>");
+                    throw Exceptional.Create<Exception>(ex, "Please verify your code for the following steps. \r\n {0} \r\n\r\n", "1. UnitTestBootStrap.Register() added in Global.asax.cs");
                 }
                 else
                 {

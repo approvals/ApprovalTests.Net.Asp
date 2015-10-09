@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+using ApprovalTests.Asp.Mvc.Bindings;
 using ApprovalUtilities.Asp.Mvc;
+using ApprovalUtilities.SimpleLogger;
 using MvcApplication1.Models;
 
 namespace MvcApplication1.Controllers
@@ -11,13 +13,14 @@ namespace MvcApplication1.Controllers
 
 		public ActionResult Index()
 		{
-			return View();
+            Logger.Variable("controller", ControllerBuilder.Current.GetControllerFactory());
+            return View();
 		}
 
 		[HttpPost]
 		public ActionResult SaveName(Person person)
 		{
-			return View(person);
+			return View(person).Explicit();
 		}
 
 
