@@ -40,7 +40,7 @@ Which will product Golden Master Files like
 
 Asp Pages
 ---
-Approvals can also unit test any urls that produce reliable output (think static pages)
+Approvals can also unit test any urls that produce reliable output (think static pages).  
 Here's a [good video](https://www.youtube.com/watch?v=52YouQkd-f8) to explain all the inner workings
 
 Available on NuGet (soon)
