@@ -1,0 +1,13 @@
+﻿Root = new Turtle(), ref: 0
+{
+    Name = "jim"
+    On = new Turtle()
+    {
+        Name = "kasper"
+        On = new Turtle()
+        {
+            Name = "llewellyn"
+            On =  -> 0
+        }
+    }
+}
