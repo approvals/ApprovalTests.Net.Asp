@@ -1,60 +1,47 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ApprovalTests.Asp.Mvc.Bindings;
-using ApprovalUtilities.SimpleLogger;
 using ApprovalUtilities.Utilities;
 
 namespace MvcApplication1
 {
-	// Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-	// visit http://go.microsoft.com/?LinkId=9394801
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // visit http://go.microsoft.com/?LinkId=9394801
 
-	public class MvcApplication : HttpApplication
-	{
-		public static string Path
-		{
-			get { return PathUtilities.GetDirectoryForCaller(); }
-		}
-
-		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-		{
-			filters.Add(new HandleErrorAttribute());
-		}
-
-		public static void RegisterRoutes(RouteCollection routes)
-		{
-			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-			routes.MapRoute(
-				"Default", // Route name
-				"{controller}/{action}/{id}", // URL with parameters
-				new {controller = "Cool", action = "Index", id = UrlParameter.Optional} // Parameter defaults
-				);
-		}
-
-		protected void Application_Start()
-		{
-            Logger.Writer = new DebugerWriter();
-           
-			AreaRegistration.RegisterAllAreas();
-
-			RegisterGlobalFilters(GlobalFilters.Filters);
-			RegisterRoutes(RouteTable.Routes);
-		    //UnitTestBootStrap.Register();
-            ControllerBuilder.Current.SetControllerFactory(typeof(UnitTestControllerFactory));
-		}
-	}
-  
-    public class DebugerWriter : IAppendable
+    public class MvcApplication : HttpApplication
     {
-        public void AppendLine(string text)
+        public static string Path
         {
-            Debug.WriteLine(text);
+            get { return PathUtilities.GetDirectoryForCaller(); }
         }
+
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new HandleErrorAttribute());
+        }
+
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                "Default", // Route name
+                "{controller}/{action}/{id}", // URL with parameters
+                new {controller = "Cool", action = "Index", id = UrlParameter.Optional} // Parameter defaults
+                );
+        }
+
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+            RegisterGlobalFilters(GlobalFilters.Filters);
+            RegisterRoutes(RouteTable.Routes);
+            UnitTestBootStrap.Register(this);
+           
+        }
+        
     }
+
+  
 }

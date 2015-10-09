@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
@@ -8,8 +9,6 @@ using ApprovalTests.Html;
 using ApprovalTests.Scrubber;
 using ApprovalUtilities.Utilities;
 using System.Linq.Expressions;
-using ApprovalTests.Utilities;
-using System.Web;
 using ApprovalTests.Asp.Mvc.Bindings;
 
 namespace ApprovalTests.Asp.Mvc
@@ -117,11 +116,29 @@ namespace ApprovalTests.Asp.Mvc
                 }
                 if (webEx != null && webEx.Response != null && (webEx.Response as HttpWebResponse).StatusCode == HttpStatusCode.NotFound)
                 {
-                    throw Exceptional.Create<Exception>(ex, "Please verify your code for the following steps. \r\n {0} \r\n\r\n", "1. UnitTestBootStrap.Register() added in Global.asax.cs");
+                    var message = @"404 Error: Page not Found.
+
+ApprovalTests.Asp needs a bootstrap to work. 
+Please verify your Global.asax.cs file has the following code
+
+protected void Application_Start()
+{
+    ...
+    UnitTestBootStrap.Register();
+}
+
+See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/master/ApprovalTests.Asp.Tests/Mvc/MvcTest.cs
+
+";
+                    throw Exceptional.Create<Exception>(ex, message);
                 }
                 else
                 {
-                    throw;
+                    using (var stream = webEx.Response.GetResponseStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        throw new Exception("Server Side Error:" + reader.ReadToEnd());
+                    }
                 }
             }
         }

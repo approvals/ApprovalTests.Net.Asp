@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using System.Web.Mvc;
 using System.Reflection;
+using System.Web.Mvc;
 using System.Web.Routing;
 using ApprovalUtilities.SimpleLogger;
 
@@ -17,6 +17,7 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         {
             Logger.Event("Added ApprovalTests Bootstrap");
         }
+
         protected override Type GetControllerType(RequestContext requestContext, string controllerName)
         {
             var requestItems = requestContext.HttpContext.Items;
@@ -38,9 +39,11 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             return returnValue;
         }
 
-        private static void UpdateControllersInRequestContext(RequestContext requestContext, Type controllerUnderTest, Type testableController)
+        private static void UpdateControllersInRequestContext(RequestContext requestContext, Type controllerUnderTest,
+            Type testableController)
         {
-            if (testableController != null && IsTestableType(testableController) && !requestContext.HttpContext.Items.Contains(TESTABLE_CONTROLLER_TYPE))
+            if (testableController != null && IsTestableType(testableController) &&
+                !requestContext.HttpContext.Items.Contains(TESTABLE_CONTROLLER_TYPE))
             {
                 requestContext.RouteData.Values[CONTROLLER_NAME] = controllerUnderTest.GetControllerName();
                 requestContext.HttpContext.Items[CONTROLLER_UNDER_TEST] = controllerUnderTest;
@@ -48,14 +51,16 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             }
         }
 
-        private Type GetControllerUnderTest(Type TestableController)
+        private Type GetControllerUnderTest(Type testableController)
         {
-            return IsTestableType(TestableController) ? TestableController.BaseType.GetGenericArguments().First() : TestableController;
+            return IsTestableType(testableController)
+                ? testableController.BaseType.GetGenericArguments().First()
+                : testableController;
         }
 
-        private static bool IsTestableType(Type TestableController)
+        private static bool IsTestableType(Type testableController)
         {
-            return TestableController.BaseType.IsGenericType && TestableController.BaseType.Name.Equals("TestableController`1");
+            return typeof (TestableControllerBase).IsAssignableFrom(testableController);
         }
 
         private Type TryResolveTestController(RequestContext requestContext, string className)
@@ -74,11 +79,15 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             var contextItems = requestContext.HttpContext.Items;
             if (contextItems.Contains(TESTABLE_CONTROLLER_TYPE) && contextItems.Contains(CONTROLLER_UNDER_TEST))
             {
-                var instance = (Controller)Activator.CreateInstance(contextItems[TESTABLE_CONTROLLER_TYPE] as Type, new object[] { base.GetControllerInstance(requestContext, contextItems[CONTROLLER_UNDER_TEST] as Type) });
+                var instance =
+                    (Controller)
+                        Activator.CreateInstance(contextItems[TESTABLE_CONTROLLER_TYPE] as Type,
+                            new object[]
+                            {base.GetControllerInstance(requestContext, contextItems[CONTROLLER_UNDER_TEST] as Type)});
 
                 contextItems.Remove(TESTABLE_CONTROLLER_TYPE);
                 contextItems.Remove(CONTROLLER_UNDER_TEST);
-
+                
                 return instance;
             }
             else
