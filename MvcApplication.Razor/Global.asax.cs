@@ -1,6 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ApprovalTests.Asp.Mvc.Bindings;
 using ApprovalUtilities.Utilities;
 
 namespace MvcApplication1
@@ -37,6 +38,7 @@ namespace MvcApplication1
 
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
+		    UnitTestBootStrap.Register();
 		}
 	}
 }

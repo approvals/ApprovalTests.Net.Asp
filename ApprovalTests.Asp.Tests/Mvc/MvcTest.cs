@@ -1,9 +1,9 @@
-﻿#if !__MonoCS__
-
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
+using System.Web.Mvc;
 using ApprovalTests.Asp;
 using ApprovalTests.Asp.Mvc;
 using ApprovalTests.Reporters;
+using ApprovalUtilities.Asp.Mvc;
 using CassiniDev;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcApplication1;
@@ -43,7 +43,7 @@ namespace ApprovalTests.Tests.Asp.Mvc
             [TestMethod]
             public void TestingSomeMvcViewWithGenerics()
             {
-            //    MvcApprovals.VerifyMvcPage<CoolController>(c => c.Index);
+                MvcApprovals.VerifyMvcPage<CoolTestableController>(c => c.TestName);
             }
 
             [TestMethod]
@@ -77,6 +77,19 @@ namespace ApprovalTests.Tests.Asp.Mvc
 #endif
         }
     }
+
+    public class CoolTestableController : TestableController<CoolController>
+    {
+        public CoolTestableController(CoolController t) : base(t)
+        {
+        }
+
+    
+            public ActionResult TestName()
+            {
+                return MvcUtilites.CallViewResult(ControllerUnderTest.SaveName, new Person { Name = "Henrik" });
+            }
+       
+    }
 }
 
-#endif

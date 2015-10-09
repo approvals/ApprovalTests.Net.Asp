@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Data.Entity;
 using System.Net;
 using System.Text;
 using System.Web.Mvc;
@@ -10,7 +11,6 @@ using ApprovalUtilities.Utilities;
 using System.Linq.Expressions;
 using ApprovalTests.Utilities;
 using System.Web;
-using ApprovalTests.Asp.Mvc.Bindings;
 
 namespace ApprovalTests.Asp.Mvc
 {
@@ -54,7 +54,7 @@ namespace ApprovalTests.Asp.Mvc
             where ControllerUnderTest : IController
         {
             var className = ReflectionUtility.GetControllerName<ControllerUnderTest>();
-            string action = ControllerUtilities.GetMethodName(actionName.Body);
+            string action = ReflectionUtility.GetMethodName(actionName.Body);
 
             VerifyMvcViaPost<ActionParameter>(className, action, typeof(ControllerUnderTest), nameValueCollectionPostData);
         }
@@ -144,7 +144,7 @@ namespace ApprovalTests.Asp.Mvc
         public static void VerifyMvcPage<ControllerUnderTest>(Expression<Func<ControllerUnderTest, Func<ActionResult>>> actionName)
             where ControllerUnderTest : TestableControllerBase
         {
-            VerifyMvcUrl(ReflectionUtility.GetControllerName<ControllerUnderTest>(), ControllerUtilities.GetMethodName(actionName.Body), GetFilePathasQueryString<ControllerUnderTest>());
+            VerifyMvcUrl(ReflectionUtility.GetControllerName<ControllerUnderTest>(), ReflectionUtility.GetMethodName(actionName.Body), GetFilePathasQueryString<ControllerUnderTest>());
         }
 
         private static NameValueCollection GetFilePathasQueryString<ControllerUnderTest>()
