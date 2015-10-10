@@ -1,0 +1,27 @@
+﻿<pre>
+Exception Thrown on Server.
+If this is a 'View not Found' the most likely reason is your ActionResult is being calculated incorrectly. 
+
+There are 2 ways to fix this.
+1) Instead of extending Controller, extend ControllerWithExplicitViews
+For Example:
+   (wrong) ExampleController : Controller
+   (right) ExampleController : ControllerWithExplicitViews
+or 
+
+2) add .Explicit() to your ViewResult
+
+For Example:
+ (wrong) return View();
+ (right) return View().Explicit();
+
+Message: The view 'TestIndex' or its master was not found or no view engine supports the searched locations. The following locations were searched:
+~/Views/NonExplicit/TestIndex.aspx
+~/Views/NonExplicit/TestIndex.ascx
+~/Views/Shared/TestIndex.aspx
+~/Views/Shared/TestIndex.ascx
+~/Views/NonExplicit/TestIndex.cshtml
+~/Views/NonExplicit/TestIndex.vbhtml
+~/Views/Shared/TestIndex.cshtml
+~/Views/Shared/TestIndex.vbhtml
+</pre>

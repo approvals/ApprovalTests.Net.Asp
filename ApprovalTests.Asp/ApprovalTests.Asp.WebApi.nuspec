@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>ApprovalTests.Asp</id>
+    <version>$version$</version>
+    <description>
+      Utilities for unit testing Asp & Asp.Mvc views and routes.
+	  Builds on ApprovalTests
+    </description>
+    <language>en-US</language>
+    <authors>Llewellyn Falco &amp; Naveem Kumar Lokesh &amp James R. Counts</authors>
+    <projectUrl>https://github.com/approvals/Approvals.Net.Asp</projectUrl>
+    <iconUrl>http://approvaltests.sourceforge.net/sites/all/themes/corolla/logo.png</iconUrl>
+    <tags>Approvals ApprovalTests ApprovalTest Test Verification Verify Approve Testing Asp Mvc Routing</tags>
+  </metadata>
+</package>
