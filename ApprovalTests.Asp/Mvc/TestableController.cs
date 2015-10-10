@@ -43,8 +43,10 @@ For Example:
  (wrong) return View();
  (right) return View().Explicit();
 
-Message: {0} 
-</pre>".FormatWith(ex.Message);
+Message: {0}
+Stack Trace:
+{1} 
+</pre>".FormatWith(ex.Message, ex.StackTrace);
             filterContext.Result = new ContentResult{Content = message};
 
         }

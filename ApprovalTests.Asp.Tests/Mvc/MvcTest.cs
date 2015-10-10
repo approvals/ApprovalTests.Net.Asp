@@ -27,7 +27,7 @@ namespace ApprovalTests.Asp.Tests.Mvc
         [TestMethod]
         public void TestMvcPage()
         {
-            MvcApprovals.VerifyMvcPage<CoolTestableController>(c => c.TestName);
+            MvcApprovals.VerifyMvcPage<TestableExampleController>(c => c.TestName);
         }
 
 
@@ -38,9 +38,9 @@ namespace ApprovalTests.Asp.Tests.Mvc
         }
     }
 
-    public class CoolTestableController : TestableController<CoolController>
+    public class TestableExampleController : TestableController<CoolController>
     {
-        public CoolTestableController(CoolController t)
+        public TestableExampleController(CoolController t)
             : base(t)
         {
         }
