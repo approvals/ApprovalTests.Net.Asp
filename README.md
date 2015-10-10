@@ -16,8 +16,8 @@ The Main points are:
 
   1) Using CassiniDevServer to host a webserver at test time  
   2) Creating a TestableController Page to call  
-  3) Adding ``` UnitTestBootStrap.Register(this);  ``` to your   [Global.asax](https://github.com/approvals/Approvals.Net.Asp/blob/master/MvcApplication.Razor/Global.asax.cs)  
-  4) Using ```.Explicit()``` on your [views](https://github.com/approvals/Approvals.Net.Asp/blob/master/MvcApplication.Razor/Controllers/CoolController.cs)
+  3) Adding ``` UnitTestBootStrap.Register("YourAssembyName");  ``` to your   [Global.asax](https://github.com/approvals/Approvals.Net.Asp/blob/master/MvcApplication.Razor/Global.asax.cs)  
+  4) Using ```.Explicit()``` on your [views](https://github.com/approvals/Approvals.Net.Asp/blob/master/MvcApplication.Razor/Controllers/ExampleController.cs) or extending ``` : ControllerWithExplicitViews ```
    
 
 Routes
@@ -43,7 +43,7 @@ Asp Pages
 Approvals can also unit test any urls that produce reliable output (think static pages).  
 Here's a [good video](https://www.youtube.com/watch?v=52YouQkd-f8) to explain all the inner workings
 
-Available on NuGet (soon)
+Available on NuGet
 ---
 [Install-Package ApprovalTests.Asp](http://nuget.org/packages/ApprovalTests.Asp)
 
