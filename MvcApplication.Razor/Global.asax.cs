@@ -37,7 +37,7 @@ namespace MvcApplication1
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            UnitTestBootStrap.Register(this);
+            UnitTestBootStrap.Register("ApprovalTests.Asp.Tests");
            
         }
         

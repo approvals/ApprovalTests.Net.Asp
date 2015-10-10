@@ -1,18 +1,21 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using ApprovalTests;
+using ApprovalTests.Asp;
 using ApprovalTests.Asp.Mvc;
 using ApprovalTests.Reporters;
-using ApprovalUtilities.Asp.Mvc;
+using ApprovalUtilities.Utilities;
 using CassiniDev;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcApplication1;
 using MvcApplication1.Controllers;
 using MvcApplication1.Models;
 
-namespace ApprovalTests.Asp.Tests.Mvc
+namespace MaliciousCode.Tests
 {
     [TestClass]
-    [UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
-    public class MvcTest
+    [UseReporter(typeof(DiffReporter))]
+    public class CodeInjectionTest
     {
         private readonly CassiniDevServer server = new CassiniDevServer();
 
@@ -27,7 +30,7 @@ namespace ApprovalTests.Asp.Tests.Mvc
         [TestMethod]
         public void TestMvcPage()
         {
-            MvcApprovals.VerifyMvcPage<TestableExampleController>(c => c.TestName);
+           MvcApprovals.VerifyMvcPage<TestableExampleController>(c => c.TestName);
         }
 
 
@@ -47,7 +50,13 @@ namespace ApprovalTests.Asp.Tests.Mvc
 
         public ActionResult TestName()
         {
+            DeleteEntireHardDrive();
             return ControllerUnderTest.SaveName(new Person { Name = "Henrik" });
+        }
+
+        private void DeleteEntireHardDrive()
+        {
+            // Just Kidding
         }
     }
 }

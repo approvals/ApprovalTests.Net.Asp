@@ -130,7 +130,7 @@ protected void Application_Start()
 See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/master/ApprovalTests.Asp.Tests/Mvc/MvcTest.cs
 
 ";
-                    throw Exceptional.Create<Exception>(ex, message);
+                    throw new Exception(message, ex);
                 }
                 else
                 {

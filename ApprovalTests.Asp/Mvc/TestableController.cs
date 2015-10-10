@@ -37,18 +37,26 @@ namespace ApprovalTests.Asp.Mvc
             var message = @"<pre>
 Exception Thrown on Server.
 If this is a 'View not Found' the most likely reason is your ActionResult is being calculated incorrectly. 
-Please add .Explicit() to your ViewResult
+
+There are 2 ways to fix this.
+1) Instead of extending Controller, extend ControllerWithExplicitViews
+For Example:
+   (wrong) ExampleController : Controller
+   (right) ExampleController : ControllerWithExplicitViews
+or 
+
+2) add .Explicit() to your ViewResult
 
 For Example:
  (wrong) return View();
  (right) return View().Explicit();
 
 Message: {0}
-Stack Trace:
-{1} 
-</pre>".FormatWith(ex.Message, ex.StackTrace);
+</pre>".FormatWith(ex.Message);
             filterContext.Result = new ContentResult{Content = message};
 
         }
+
+     
     }
 }

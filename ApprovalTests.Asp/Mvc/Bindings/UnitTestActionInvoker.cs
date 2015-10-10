@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 
@@ -12,7 +8,10 @@ namespace ApprovalTests.Asp.Mvc.Bindings
     {
         public override bool InvokeAction(ControllerContext controllerContext, string actionName)
         {
-            return base.InvokeAction(controllerContext, HttpContext.Current.Request.QueryString["testAction"] ?? actionName);
+            return base.InvokeAction(controllerContext,
+                HttpContext.Current.Request.QueryString["testAction"] ?? actionName);
         }
+
+        
     }
 }

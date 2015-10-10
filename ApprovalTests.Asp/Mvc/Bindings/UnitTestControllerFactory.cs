@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using System.Web.Routing;
 using ApprovalUtilities.SimpleLogger;
 
@@ -9,6 +10,7 @@ namespace ApprovalTests.Asp.Mvc.Bindings
 {
     public class UnitTestControllerFactory : DefaultControllerFactory
     {
+        public static string[] ALLOWED_DLLS;
         private const string TESTABLE_CONTROLLER_TYPE = "TESTABLE_CONTROLLER_INSTANCE";
         private const string CONTROLLER_UNDER_TEST = "CONTROLLER_UNDER_TEST";
         private const string CONTROLLER_NAME = "controller";
@@ -20,23 +22,38 @@ namespace ApprovalTests.Asp.Mvc.Bindings
 
         protected override Type GetControllerType(RequestContext requestContext, string controllerName)
         {
-            var requestItems = requestContext.HttpContext.Items;
-            Type returnValue = base.GetControllerType(requestContext, controllerName);
-
-            if (!requestItems.Contains(TESTABLE_CONTROLLER_TYPE) && !requestItems.Contains(CONTROLLER_UNDER_TEST))
+            try
             {
-                if (returnValue == null)
-                    returnValue = TryResolveTestController(requestContext, controllerName);
+                var requestItems = requestContext.HttpContext.Items;
+                Type returnValue = base.GetControllerType(requestContext, controllerName);
 
-                var controllerUnderTest = GetControllerUnderTest(returnValue);
-                UpdateControllersInRequestContext(requestContext, controllerUnderTest, returnValue);
+                if (!requestItems.Contains(TESTABLE_CONTROLLER_TYPE) && !requestItems.Contains(CONTROLLER_UNDER_TEST))
+                {
+                    if (returnValue == null)
+                    {
+                        returnValue = TryResolveTestController(requestContext, controllerName);
+                    }
+                    var controllerUnderTest = GetControllerUnderTest(returnValue);
+                    UpdateControllersInRequestContext(requestContext, controllerUnderTest, returnValue);
+                }
+                else
+                {
+                    returnValue = requestItems[CONTROLLER_UNDER_TEST] as Type;
+                }
+
+                return returnValue;
             }
-            else
+            catch (IllegalAssemblyException illegal)
             {
-                returnValue = requestItems[CONTROLLER_UNDER_TEST] as Type;
+                return ShowIllegalAccessMessage(illegal, requestContext);
             }
+        }
 
-            return returnValue;
+        private Type ShowIllegalAccessMessage(IllegalAssemblyException illegal, RequestContext requestContext)
+        {
+            requestContext.RouteData.Values["illegalAssemblyPath"] = illegal.assemblyPath;
+            requestContext.RouteData.Values["action"] = "Display";
+            return typeof (IllagelAccesMessageController);
         }
 
         private static void UpdateControllersInRequestContext(RequestContext requestContext, Type controllerUnderTest,
@@ -69,9 +86,21 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             var assemblyPath = requestContext.HttpContext.Request.QueryString["assemblyPath"];
             if (!string.IsNullOrEmpty(assemblyPath))
             {
-                returnValue = Assembly.LoadFile(assemblyPath).GetController(className);
+                if (isAssembyAllowed(assemblyPath))
+                {
+                    returnValue = Assembly.LoadFile(assemblyPath).GetController(className);
+                }
+                else
+                {
+                    throw new IllegalAssemblyException(assemblyPath);
+                }
             }
             return returnValue;
+        }
+
+        private static bool isAssembyAllowed(string assemblyPath)
+        {
+            return ALLOWED_DLLS.Any(a => assemblyPath.Contains(a));
         }
 
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
@@ -87,7 +116,7 @@ namespace ApprovalTests.Asp.Mvc.Bindings
 
                 contextItems.Remove(TESTABLE_CONTROLLER_TYPE);
                 contextItems.Remove(CONTROLLER_UNDER_TEST);
-                
+
                 return instance;
             }
             else
