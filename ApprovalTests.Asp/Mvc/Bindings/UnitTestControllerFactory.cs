@@ -51,7 +51,7 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         {
             requestContext.RouteData.Values["theMessage"] = path;
             requestContext.RouteData.Values["action"] = action;
-            return typeof(IllegalAccesMessageController);
+            return typeof(ContentErrorMessageController);
         }
 
         private static void UpdateControllersInRequestContext(RequestContext requestContext, Type controllerUnderTest,

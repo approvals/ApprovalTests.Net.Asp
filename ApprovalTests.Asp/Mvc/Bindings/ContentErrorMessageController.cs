@@ -5,7 +5,7 @@ using ApprovalUtilities.Utilities;
 
 namespace ApprovalTests.Asp.Mvc.Bindings
 {
-    public class IllegalAccesMessageController : Controller
+    public class ContentErrorMessageController : Controller
     {
         public ActionResult Display(String theMessage)
         {

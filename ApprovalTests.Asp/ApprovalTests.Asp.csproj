@@ -88,7 +88,7 @@
     <Compile Include="AspApprovals.cs" />
     <Compile Include="AspTestingUtils.cs" />
     <Compile Include="Mocks.cs" />
-    <Compile Include="Mvc\Bindings\IllegalAccesMessageController.cs" />
+    <Compile Include="Mvc\Bindings\ContentErrorMessageController.cs" />
     <Compile Include="Mvc\Bindings\IllegalAssemblyException.cs" />
     <Compile Include="Mvc\Bindings\UnitTestActionInvoker.cs" />
     <Compile Include="Mvc\Bindings\UnitTestBootStrap.cs" />
