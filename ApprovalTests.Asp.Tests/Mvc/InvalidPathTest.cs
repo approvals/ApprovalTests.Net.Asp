@@ -13,7 +13,7 @@ namespace ApprovalTests.Asp.Tests.Mvc
     public class InvalidPathTest
     {
         //TODO: We need to work on this
-        // [TestMethod]
+        [TestMethod]
         public void TestErrorMessage()
         {
             MvcApprovals.VerifyMvcPage<TestableWithInvalidPathController>(t => t.IndexTest);
