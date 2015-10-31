@@ -13,20 +13,20 @@ namespace ApprovalTests.Tests.Asp
 	[UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
 	public class RenderHtmlTest
 	{
-		private CassiniDevServer server = new CassiniDevServer();
+        private CassiniDevServer server = new CassiniDevServer();
 
-		[TestInitialize]
-		public void Setup()
-		{
-			PortFactory.AspPort = 1359;
-			server.StartServer(Global.Path, PortFactory.AspPort, "/", "localhost");
-		}
+        [TestInitialize]
+        public void Setup()
+        {
+            PortFactory.AspPort = 1360;
+            server.StartServer(Global.Path, PortFactory.AspPort, "/", "localhost");
+        }
 
-		[TestCleanup]
-		public void TearDown()
-		{
-			server.StopServer();
-		}
+        [TestCleanup]
+        public void TearDown()
+        {
+            server.StopServer();
+        }
 
 		[TestMethod]
 		public void TestSimpleInvoice()
@@ -34,13 +34,13 @@ namespace ApprovalTests.Tests.Asp
 			AspApprovals.VerifyAspPage(new InvoiceView().TestSimpleInvoice, HtmlScrubbers.ScrubAsp);
 
 			//  -- These are the same thing
-			//AspApprovals.VerifyUrl("http://localhost:1359/Orders/InvoiceView.aspx?TestSimpleInvoice");
+			//AspApprovals.VerifyUrl("http://localhost:1360/Orders/InvoiceView.aspx?TestSimpleInvoice");
 		}
 
 		[TestMethod]
 		public void TestInternationalization()
 		{
-			AspApprovals.VerifyUrl("http://localhost:1359/Encoding.UTF8.html", HtmlScrubbers.ScrubBrowserLink);
+            AspApprovals.VerifyUrl("http://localhost:1360/Encoding.UTF8.html", HtmlScrubbers.ScrubBrowserLink);
 		}
 	}
 }

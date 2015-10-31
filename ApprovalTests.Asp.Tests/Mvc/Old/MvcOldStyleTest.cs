@@ -13,21 +13,6 @@ namespace ApprovalTests.Asp.Tests.Mvc.Old
     [UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
     public class MvcOldStyleTest
     {
-        private readonly CassiniDevServer server = new CassiniDevServer();
-
-        [TestInitialize]
-        public void Setup()
-        {
-            PortFactory.MvcPort = 11625;
-            this.server.StartServer(MvcApplication.Path, PortFactory.MvcPort, "/", "localhost");
-        }
-
-        [TestCleanup]
-        public void TearDown()
-        {
-            this.server.StopServer();
-        }
-
         [TestMethod]
         public void TestingSomeMvcView()
         {

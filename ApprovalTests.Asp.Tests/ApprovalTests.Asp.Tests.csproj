@@ -97,10 +97,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AssemblyStart.cs" />
     <Compile Include="Mvc\ErrorMessageTest.cs" />
+    <Compile Include="Mvc\InvalidPathTest.cs" />
     <Compile Include="Mvc\MvcTest.cs" />
     <Compile Include="Mvc\MvcTestBase.cs" />
     <Compile Include="Mvc\Old\MvcOldStyleTest.cs" />
+    <Compile Include="Mvc\TestableControllerWithInvalidPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderHtmlTest.cs" />
     <Compile Include="RoutingTest.cs" />
