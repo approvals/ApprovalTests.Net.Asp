@@ -28,7 +28,7 @@ namespace MvcApplication1
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new {controller = "Cool", action = "Index", id = UrlParameter.Optional} // Parameter defaults
+                new { controller = "Cool", action = "Index", id = UrlParameter.Optional } // Parameter defaults
                 );
         }
 
@@ -37,11 +37,12 @@ namespace MvcApplication1
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            UnitTestBootStrap.Register("ApprovalTests.Asp.Tests");
-           
+
+            UnitTestBootStrap.RegisterWithDebugCondition("ApprovalTests.Asp.Tests");
+            //UnitTestBootStrap.RegisterWithTestCondition("ApprovalTests.Asp.Tests");
         }
-        
+
     }
 
-  
+
 }
