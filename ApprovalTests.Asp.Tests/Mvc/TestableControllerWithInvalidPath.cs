@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
+using SmallFry;
 
 namespace ApprovalTests.Asp.Tests.Mvc
 {
@@ -13,7 +14,7 @@ namespace ApprovalTests.Asp.Tests.Mvc
         public TestableWithInvalidPathController(CoolController coolController)
             : base(coolController)
         {
-
+            var a = SmallFry.EncodingType.Empty;
         }
 
         public ActionResult IndexTest()

@@ -53,7 +53,7 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         {
             requestContext.RouteData.Values["illegalAssemblyPath"] = illegal.assemblyPath;
             requestContext.RouteData.Values["action"] = "Display";
-            return typeof (IllegalAccesMessageController);
+            return typeof(IllegalAccesMessageController);
         }
 
         private static void UpdateControllersInRequestContext(RequestContext requestContext, Type controllerUnderTest,
@@ -77,7 +77,7 @@ namespace ApprovalTests.Asp.Mvc.Bindings
 
         private static bool IsTestableType(Type testableController)
         {
-            return typeof (TestableControllerBase).IsAssignableFrom(testableController);
+            return typeof(TestableControllerBase).IsAssignableFrom(testableController);
         }
 
         private Type TryResolveTestController(RequestContext requestContext, string className)
@@ -88,7 +88,9 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             {
                 if (isAssembyAllowed(assemblyPath))
                 {
+
                     returnValue = Assembly.LoadFile(assemblyPath).GetController(className);
+
                 }
                 else
                 {
@@ -108,16 +110,26 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             var contextItems = requestContext.HttpContext.Items;
             if (contextItems.Contains(TESTABLE_CONTROLLER_TYPE) && contextItems.Contains(CONTROLLER_UNDER_TEST))
             {
-                var instance =
-                    (Controller)
-                        Activator.CreateInstance(contextItems[TESTABLE_CONTROLLER_TYPE] as Type,
-                            new object[]
-                            {base.GetControllerInstance(requestContext, contextItems[CONTROLLER_UNDER_TEST] as Type)});
+                try
+                {
+                    var instance =
+                        (Controller)
+                            Activator.CreateInstance(contextItems[TESTABLE_CONTROLLER_TYPE] as Type,
+                                new object[] { base.GetControllerInstance(requestContext, contextItems[CONTROLLER_UNDER_TEST] as Type) });
 
-                contextItems.Remove(TESTABLE_CONTROLLER_TYPE);
-                contextItems.Remove(CONTROLLER_UNDER_TEST);
 
-                return instance;
+
+                    contextItems.Remove(TESTABLE_CONTROLLER_TYPE);
+                    contextItems.Remove(CONTROLLER_UNDER_TEST);
+
+                    return instance;
+                }
+                catch (TargetInvocationException ex)
+                {
+                    requestContext.RouteData.Values["exMessage"] = ex.InnerException.Message;
+                    requestContext.RouteData.Values["action"] = "DisplayAssemblyNotReferedInMainProject";
+                    return new IllegalAccesMessageController();
+                }
             }
             else
             {
