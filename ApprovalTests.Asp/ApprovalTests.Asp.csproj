@@ -88,7 +88,7 @@
     <Compile Include="AspApprovals.cs" />
     <Compile Include="AspTestingUtils.cs" />
     <Compile Include="Mocks.cs" />
-    <Compile Include="Mvc\Bindings\IllagelAccesMessageController.cs" />
+    <Compile Include="Mvc\Bindings\IllegalAccesMessageController.cs" />
     <Compile Include="Mvc\Bindings\IllegalAssemblyException.cs" />
     <Compile Include="Mvc\Bindings\UnitTestActionInvoker.cs" />
     <Compile Include="Mvc\Bindings\UnitTestBootStrap.cs" />
@@ -99,6 +99,8 @@
     <Compile Include="Mvc\TestableController.cs" />
     <Compile Include="Mvc\Bindings\ControllerUtilities.cs" />
     <Compile Include="Mvc\Utilities\ControllerWithExplicitViews.cs" />
+    <Compile Include="Mvc\Utilities\PathScrubbers.cs" />
+    <Compile Include="Mvc\Utilities\StringUtils.cs" />
     <Compile Include="PortFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

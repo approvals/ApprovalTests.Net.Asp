@@ -10,6 +10,7 @@ using ApprovalTests.Scrubber;
 using ApprovalUtilities.Utilities;
 using System.Linq.Expressions;
 using ApprovalTests.Asp.Mvc.Bindings;
+using ApprovalTests.Asp.Mvc.Utilities;
 
 namespace ApprovalTests.Asp.Mvc
 {
@@ -85,19 +86,19 @@ namespace ApprovalTests.Asp.Mvc
             VerifyMvcViaPost<ControllerUnderTest, ActionParameter>(actionName, CreateFromActionParameter(actionParameter));
         }
 
-        public static void VerifyMvcPage(Func<ActionResult> func)
+        public static void VerifyMvcPage(Func<ActionResult> func, Func<string, string> scrubber = null)
         {
             string clazz = func.Target.GetType().Name.Replace("Controller", String.Empty);
             string action = func.Method.Name;
-            VerifyMvcUrl(clazz, action);
+            VerifyMvcUrl(clazz, action, scrubber: scrubber);
         }
 
-        private static void VerifyMvcUrl(string clazz, string action, NameValueCollection nvc = null)
+        private static void VerifyMvcUrl(string clazz, string action, NameValueCollection nvc = null, Func<string, string> scrubber = null)
         {
             VerifyWithException(() =>
             {
                 var url = GetURL(clazz, action, nvc);
-                AspApprovals.VerifyUrl(url, HtmlScrubbers.ScrubMvc);
+                AspApprovals.VerifyUrl(url, ScrubberUtils.Combine(HtmlScrubbers.ScrubMvc, scrubber ?? ScrubberUtils.NO_SCRUBBER));
             });
         }
 
@@ -134,11 +135,7 @@ See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/mast
                 }
                 else
                 {
-                    using (var stream = webEx.Response.GetResponseStream())
-                    using (var reader = new StreamReader(stream))
-                    {
-                        throw new Exception("Server Side Error:" + reader.ReadToEnd());
-                    }
+                    throw;
                 }
             }
         }
@@ -158,10 +155,15 @@ See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/mast
         }
 
 
-        public static void VerifyMvcPage<ControllerUnderTest>(Expression<Func<ControllerUnderTest, Func<ActionResult>>> actionName)
+        public static void VerifyMvcPage<ControllerUnderTest>(Expression<Func<ControllerUnderTest, Func<ActionResult>>> actionName, Func<string, string> scrubber = null)
             where ControllerUnderTest : TestableControllerBase
         {
-            VerifyMvcUrl(ReflectionUtility.GetControllerName<ControllerUnderTest>(), ControllerUtilities.GetMethodName(actionName.Body), GetFilePathasQueryString<ControllerUnderTest>());
+            VerifyMvcUrl(ReflectionUtility.GetControllerName<ControllerUnderTest>(), ControllerUtilities.GetMethodName(actionName.Body), GetFilePathasQueryString<ControllerUnderTest>(), scrubber);
+        }
+
+        private static string GetAssemblyPath<ControllerUnderTest>()
+        {
+            return Path.GetDirectoryName(typeof(ControllerUnderTest).Assembly.Location);
         }
 
         private static NameValueCollection GetFilePathasQueryString<ControllerUnderTest>()

@@ -5,7 +5,7 @@ using ApprovalUtilities.Utilities;
 
 namespace ApprovalTests.Asp.Mvc.Bindings
 {
-    public class IllagelAccesMessageController : Controller
+    public class IllegalAccesMessageController : Controller
     {
         public ActionResult Display(String illegalAssemblyPath)
         {

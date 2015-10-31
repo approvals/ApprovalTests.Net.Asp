@@ -53,7 +53,7 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         {
             requestContext.RouteData.Values["illegalAssemblyPath"] = illegal.assemblyPath;
             requestContext.RouteData.Values["action"] = "Display";
-            return typeof (IllagelAccesMessageController);
+            return typeof (IllegalAccesMessageController);
         }
 
         private static void UpdateControllersInRequestContext(RequestContext requestContext, Type controllerUnderTest,
