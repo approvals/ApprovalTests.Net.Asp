@@ -14,15 +14,17 @@ namespace ApprovalTests.Asp.Tests.Mvc
     [UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
     public class MvcTest
     {
-        private readonly CassiniDevServer server = new CassiniDevServer();
+        //TODO: Note: We are using ApprovalTests.Asp.Tests.AssemblyStart. 
+        //TODO: Note: if you don't use that you have to uncomment the bellow code to make it work.
+
+        //private readonly CassiniDevServer server = new CassiniDevServer();
 
         [TestInitialize]
         public void Setup()
         {
-            PortFactory.MvcPort = 11625;
-            this.server.StartServer(MvcApplication.Path, PortFactory.MvcPort, "/", "localhost");
+            //PortFactory.MvcPort = 11625;
+            //this.server.StartServer(MvcApplication.Path, PortFactory.MvcPort, "/", "localhost");
         }
-
 
         [TestMethod]
         public void TestMvcPage()
@@ -34,7 +36,7 @@ namespace ApprovalTests.Asp.Tests.Mvc
         [TestCleanup]
         public void TearDown()
         {
-            this.server.StopServer();
+            //this.server.StopServer();
         }
     }
 

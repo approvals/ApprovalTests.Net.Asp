@@ -10,15 +10,16 @@ namespace ApprovalTests.Asp.Mvc
         public static string GetControllerName<T>()
             where T : IController
         {
-            return typeof (T).Name.Replace("Controller", string.Empty);
+            var name = typeof(T).Name;
+            return name.EndsWith("Controller") ? name.Substring(0, name.Length - "Controller".Length) : name;
         }
 
         public static string GetMethodName<T>(Expression<Func<T, Func<ActionResult>>> expression)
         {
-            var unaryExpression = (UnaryExpression) expression.Body;
-            var methodCallExpression = (MethodCallExpression) unaryExpression.Operand;
-            var constantExpression = (ConstantExpression) methodCallExpression.Object;
-            var methodInfo = (MemberInfo) constantExpression.Value;
+            var unaryExpression = (UnaryExpression)expression.Body;
+            var methodCallExpression = (MethodCallExpression)unaryExpression.Operand;
+            var constantExpression = (ConstantExpression)methodCallExpression.Object;
+            var methodInfo = (MemberInfo)constantExpression.Value;
             return methodInfo.Name;
         }
     }

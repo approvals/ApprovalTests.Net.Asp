@@ -24,9 +24,11 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         {
             return type.Name.Replace("Controller", string.Empty);
         }
+
         public static Type GetController(this Assembly assembly, string controllerName)
         {
-            return assembly.GetTypes().First(t => t.Name.Equals(string.Concat(controllerName, "Controller"), StringComparison.OrdinalIgnoreCase));
+            string[] names = { controllerName.ToLowerInvariant(), string.Concat(controllerName, "Controller").ToLowerInvariant() };
+            return assembly.GetTypes().First(t => names.Contains(t.Name.ToLowerInvariant()));
         }
     }
 }
