@@ -16,7 +16,7 @@ Is not allowed.
 If you would like to allow this assembly. 
 Please add a filter to your Global.asax page like
 
-UnitTestBootStrap.Register(""{1}"");".FormatWith(illegalAssemblyPath, illegalAssemblyPath.Split('\\').Last());
+UnitTestBootStrap.RegisterWithDebugCondition(""{1}"");".FormatWith(illegalAssemblyPath, illegalAssemblyPath.Split('\\').Last());
 
             return Content(message);
         }
