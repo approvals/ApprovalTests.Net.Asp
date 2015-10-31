@@ -10,12 +10,12 @@ namespace ApprovalTests.Asp.Mvc.Bindings
 {
     public static class ControllerUtilities
     {
-    
+
         public static string GetMethodName(Expression expression)
         {
             var unaryExpression = (UnaryExpression)expression;
             var methodCallExpression = (MethodCallExpression)unaryExpression.Operand;
-            var constantExpression = (ConstantExpression)methodCallExpression.Object;
+            var constantExpression = (ConstantExpression)(methodCallExpression.Object ?? methodCallExpression.Arguments.Last());
             var methodInfo = (MemberInfo)constantExpression.Value;
             return methodInfo.Name;
         }

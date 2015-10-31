@@ -10,6 +10,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcApplication1;
 using MvcApplication1.Controllers;
 using MvcApplication1.Models;
+using ApprovalTests.Scrubber;
+using ApprovalUtilities.Utilities;
+using ApprovalTests.Asp.Mvc.Utilities;
+using System.Text.RegularExpressions;
 
 namespace MaliciousCode.Tests
 {
@@ -30,9 +34,8 @@ namespace MaliciousCode.Tests
         [TestMethod]
         public void TestMvcPage()
         {
-           MvcApprovals.VerifyMvcPage<TestableExampleController>(c => c.TestName);
+            MvcApprovals.VerifyMvcPage<TestableExampleController>(c => c.TestName, PathScrubbers.ScrubPath());
         }
-
 
         [TestCleanup]
         public void TearDown()
