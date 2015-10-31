@@ -30,11 +30,9 @@ namespace ApprovalTests.Asp.Mvc.Bindings
                 if (!requestItems.Contains(TESTABLE_CONTROLLER_TYPE) && !requestItems.Contains(CONTROLLER_UNDER_TEST))
                 {
                     if (returnValue == null)
-                    {
                         returnValue = TryResolveTestController(requestContext, controllerName);
-                    }
-                    var controllerUnderTest = GetControllerUnderTest(returnValue);
-                    UpdateControllersInRequestContext(requestContext, controllerUnderTest, returnValue);
+
+                    UpdateControllersInRequestContext(requestContext, GetControllerUnderTest(returnValue), returnValue);
                 }
                 else
                 {
@@ -45,14 +43,14 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             }
             catch (IllegalAssemblyException illegal)
             {
-                return ShowIllegalAccessMessage(illegal, requestContext);
+                return GetContentMessageType(illegal.assemblyPath, "Display", requestContext);
             }
         }
 
-        private Type ShowIllegalAccessMessage(IllegalAssemblyException illegal, RequestContext requestContext)
+        private Type GetContentMessageType(string path, string action, RequestContext requestContext)
         {
-            requestContext.RouteData.Values["illegalAssemblyPath"] = illegal.assemblyPath;
-            requestContext.RouteData.Values["action"] = "Display";
+            requestContext.RouteData.Values["theMessage"] = path;
+            requestContext.RouteData.Values["action"] = action;
             return typeof(IllegalAccesMessageController);
         }
 
@@ -117,8 +115,6 @@ namespace ApprovalTests.Asp.Mvc.Bindings
                             Activator.CreateInstance(contextItems[TESTABLE_CONTROLLER_TYPE] as Type,
                                 new object[] { base.GetControllerInstance(requestContext, contextItems[CONTROLLER_UNDER_TEST] as Type) });
 
-
-
                     contextItems.Remove(TESTABLE_CONTROLLER_TYPE);
                     contextItems.Remove(CONTROLLER_UNDER_TEST);
 
@@ -126,9 +122,9 @@ namespace ApprovalTests.Asp.Mvc.Bindings
                 }
                 catch (TargetInvocationException ex)
                 {
-                    requestContext.RouteData.Values["exMessage"] = ex.InnerException.Message;
-                    requestContext.RouteData.Values["action"] = "DisplayAssemblyNotReferedInMainProject";
-                    return new IllegalAccesMessageController();
+                    var type = GetContentMessageType(ex.InnerException.Message, "DisplayAssemblyNotReferedInMainProject", requestContext);
+                    return base.GetControllerInstance(requestContext, type);
+
                 }
             }
             else
