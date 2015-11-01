@@ -43,15 +43,15 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             }
             catch (IllegalAssemblyException illegal)
             {
-                return GetContentMessageType(illegal.assemblyPath, "Display", requestContext);
+                return GetContentResponseMessageTypeController(illegal.assemblyPath, "Display", requestContext);
             }
         }
 
-        private Type GetContentMessageType(string path, string action, RequestContext requestContext)
+        private Type GetContentResponseMessageTypeController(string path, string action, RequestContext requestContext)
         {
             requestContext.RouteData.Values["theMessage"] = path;
             requestContext.RouteData.Values["action"] = action;
-            return typeof(ContentErrorMessageController);
+            return typeof(ContentResponseMessageController);
         }
 
         private static void UpdateControllersInRequestContext(RequestContext requestContext, Type controllerUnderTest,
@@ -122,9 +122,8 @@ namespace ApprovalTests.Asp.Mvc.Bindings
                 }
                 catch (TargetInvocationException ex)
                 {
-                    var type = GetContentMessageType(ex.InnerException.Message, "DisplayAssemblyNotReferedInMainProject", requestContext);
+                    var type = GetContentResponseMessageTypeController(ex.InnerException.Message, "DisplayAssemblyNotReferedInMainProject", requestContext);
                     return base.GetControllerInstance(requestContext, type);
-
                 }
             }
             else

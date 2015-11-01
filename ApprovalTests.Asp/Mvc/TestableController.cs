@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using ApprovalUtilities.Utilities;
+using System.IO;
+using ApprovalTests.Asp.Mvc.Bindings;
 
 namespace ApprovalTests.Asp.Mvc
 {
@@ -33,7 +35,9 @@ namespace ApprovalTests.Asp.Mvc
             filterContext.ExceptionHandled = true;
 
             var model = new HandleErrorInfo(filterContext.Exception, "Controller", "Action");
-            var e = ex as InvalidOperationException;
+
+            var fileNotfoundException = ex as FileNotFoundException;
+
             var message = @"<pre>
 Exception Thrown on Server.
 If this is a 'View not Found' the most likely reason is your ActionResult is being calculated incorrectly. 
@@ -53,10 +57,13 @@ For Example:
 
 Message: {0}
 </pre>".FormatWith(ex.Message);
-            filterContext.Result = new ContentResult{Content = message};
+
+            filterContext.Result = fileNotfoundException != null ?
+                new ContentResponseMessageController().DisplayAssemblyNotReferedInMainProject(fileNotfoundException.Message) :
+                new ContentResult { Content = message };
 
         }
 
-     
+
     }
 }
