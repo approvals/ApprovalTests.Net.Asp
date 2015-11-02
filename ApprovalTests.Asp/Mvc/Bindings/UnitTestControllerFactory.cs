@@ -30,7 +30,9 @@ namespace ApprovalTests.Asp.Mvc.Bindings
                 if (!requestItems.Contains(TESTABLE_CONTROLLER_TYPE) && !requestItems.Contains(CONTROLLER_UNDER_TEST))
                 {
                     if (returnValue == null)
+                    {
                         returnValue = TryResolveTestController(requestContext, controllerName);
+                    }
 
                     UpdateControllersInRequestContext(requestContext, GetControllerUnderTest(returnValue), returnValue);
                 }
@@ -47,9 +49,9 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             }
         }
 
-        private Type GetContentResponseMessageTypeController(string path, string action, RequestContext requestContext)
+        private Type GetContentResponseMessageTypeController(string theMessage, string action, RequestContext requestContext)
         {
-            requestContext.RouteData.Values["theMessage"] = path;
+            requestContext.RouteData.Values["theMessage"] = theMessage;
             requestContext.RouteData.Values["action"] = action;
             return typeof(ContentResponseMessageController);
         }
@@ -81,20 +83,17 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         private Type TryResolveTestController(RequestContext requestContext, string className)
         {
             Type returnValue = null;
+            
             var assemblyPath = requestContext.HttpContext.Request.QueryString["assemblyPath"];
-            if (!string.IsNullOrEmpty(assemblyPath))
+            if (!string.IsNullOrEmpty(assemblyPath) && isAssembyAllowed(assemblyPath))
             {
-                if (isAssembyAllowed(assemblyPath))
-                {
-
-                    returnValue = Assembly.LoadFile(assemblyPath).GetController(className);
-
-                }
-                else
-                {
-                    throw new IllegalAssemblyException(assemblyPath);
-                }
+                returnValue = Assembly.LoadFile(assemblyPath).GetControllerType(className);
             }
+            else
+            {
+                throw new IllegalAssemblyException(assemblyPath);
+            }
+
             return returnValue;
         }
 
