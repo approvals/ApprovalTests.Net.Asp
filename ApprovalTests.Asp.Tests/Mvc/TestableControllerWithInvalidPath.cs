@@ -14,11 +14,12 @@ namespace ApprovalTests.Asp.Tests.Mvc
         public TestableWithInvalidPathController(CoolController coolController)
             : base(coolController)
         {
-            var a = SmallFry.EncodingType.Empty;
+
         }
 
         public ActionResult IndexTest()
         {
+            var a = SmallFry.EncodingType.Empty;
             return Content("From ApprovalTests.Asp.Tests.Mvc.TestableWithInvalidPathController.IndexTest");
         }
     }
