@@ -7,6 +7,19 @@ namespace ApprovalTests.Asp.Mvc.Bindings
 {
     public class ContentResponseMessageController : Controller
     {
+        public ActionResult Echo(string theMessage)
+        {
+            string message = @"<pre> 
+If you are seeing this then ApprovalTests.Asp.Bootstrap is setup correctly
+
+Echoing 
+'{0}'
+
+</pre>".FormatWith(theMessage);
+
+            return Content(message);
+        }
+
         public ActionResult Display(String theMessage)
         {
             string message = @"<pre>
