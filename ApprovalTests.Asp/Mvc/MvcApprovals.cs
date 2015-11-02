@@ -171,5 +171,10 @@ See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/mast
         {
             return new NameValueCollection { { "assemblyPath", typeof(ControllerUnderTest).Assembly.Location } };
         }
+
+        public static void VerifyApprovalBootstrap()
+        {
+            Asp.AspApprovals.VerifyUrl("http://localhost:{0}/ApprovalTests/Echo/Testing123".FormatWith(PortFactory.MvcPort));
+        }
     }
 }

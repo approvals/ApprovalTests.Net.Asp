@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SmallFryConfig.cs" />
     <Compile Include="AssemblyStart.cs" />
+    <Compile Include="Mvc\EchoTest.cs" />
     <Compile Include="Mvc\ErrorMessageTest.cs" />
     <Compile Include="Mvc\InvalidPathTest.cs" />
     <Compile Include="Mvc\MvcTest.cs" />

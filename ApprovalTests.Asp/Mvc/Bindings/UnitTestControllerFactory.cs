@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using ApprovalUtilities.SimpleLogger;
+using ApprovalUtilities.Utilities;
 
 namespace ApprovalTests.Asp.Mvc.Bindings
 {
@@ -24,13 +25,21 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         {
             try
             {
+                Type returnValue = GetEchoResponseType(requestContext);
+                if (returnValue != null)
+                {
+                    return returnValue;
+                }
+
                 var requestItems = requestContext.HttpContext.Items;
-                Type returnValue = base.GetControllerType(requestContext, controllerName);
+                returnValue = base.GetControllerType(requestContext, controllerName);
 
                 if (!requestItems.Contains(TESTABLE_CONTROLLER_TYPE) && !requestItems.Contains(CONTROLLER_UNDER_TEST))
                 {
                     if (returnValue == null)
+                    {
                         returnValue = TryResolveTestController(requestContext, controllerName);
+                    }
 
                     UpdateControllersInRequestContext(requestContext, GetControllerUnderTest(returnValue), returnValue);
                 }
@@ -47,9 +56,23 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             }
         }
 
-        private Type GetContentResponseMessageTypeController(string path, string action, RequestContext requestContext)
+        private Type GetEchoResponseType(RequestContext requestContext)
         {
-            requestContext.RouteData.Values["theMessage"] = path;
+            Type returnValue = null;
+
+            var controller = requestContext.RouteData.Values.GetValueOrDefault("controller") + "";
+            var action = requestContext.RouteData.Values.GetValueOrDefault("action") + "";
+            if ("ApprovalTests".Equals(controller, StringComparison.InvariantCultureIgnoreCase)
+                && "Echo".Equals(action, StringComparison.InvariantCultureIgnoreCase))
+            {
+                returnValue = GetContentResponseMessageTypeController(requestContext.RouteData.Values.GetValueOrDefault("id") + "", "Echo", requestContext);
+            }
+            return returnValue;
+        }
+
+        private Type GetContentResponseMessageTypeController(string theMessage, string action, RequestContext requestContext)
+        {
+            requestContext.RouteData.Values["theMessage"] = theMessage;
             requestContext.RouteData.Values["action"] = action;
             return typeof(ContentResponseMessageController);
         }
@@ -81,20 +104,17 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         private Type TryResolveTestController(RequestContext requestContext, string className)
         {
             Type returnValue = null;
+
             var assemblyPath = requestContext.HttpContext.Request.QueryString["assemblyPath"];
-            if (!string.IsNullOrEmpty(assemblyPath))
+            if (!string.IsNullOrEmpty(assemblyPath) && isAssembyAllowed(assemblyPath))
             {
-                if (isAssembyAllowed(assemblyPath))
-                {
-
-                    returnValue = Assembly.LoadFile(assemblyPath).GetController(className);
-
-                }
-                else
-                {
-                    throw new IllegalAssemblyException(assemblyPath);
-                }
+                returnValue = Assembly.LoadFile(assemblyPath).GetControllerType(className);
             }
+            else
+            {
+                throw new IllegalAssemblyException(assemblyPath);
+            }
+
             return returnValue;
         }
 
