@@ -125,7 +125,7 @@ Please verify your Global.asax.cs file has the following code
 protected void Application_Start()
 {
     ...
-    UnitTestBootStrap.Register();
+    UnitTestBootStrap.RegisterWithDebugCondition();
 }
 
 See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/master/ApprovalTests.Asp.Tests/Mvc/MvcTest.cs
@@ -174,7 +174,10 @@ See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/mast
 
         public static void VerifyApprovalBootstrap()
         {
-            Asp.AspApprovals.VerifyUrl("http://localhost:{0}/ApprovalTests/Echo/Testing123".FormatWith(PortFactory.MvcPort));
+            VerifyWithException(() =>
+            {
+                Asp.AspApprovals.VerifyUrl("http://localhost:{0}/ApprovalTests/Echo/Testing123".FormatWith(PortFactory.MvcPort));
+            });
         }
     }
 }
