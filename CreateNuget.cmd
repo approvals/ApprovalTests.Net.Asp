@@ -1,4 +1,4 @@
-set version=1.0.0
+set version=1.0.1
 if not exist .\nuget_packages mkdir nuget_packages
 del /Q .\nuget_packages\*.*
 .nuget\NuGet.exe pack ApprovalTests.Asp\ApprovalTests.Asp.csproj -OutputDirectory .\nuget_packages -Version %version% -symbols
