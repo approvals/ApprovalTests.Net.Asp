@@ -16,7 +16,7 @@ The Main points are:
 
   1) Using CassiniDevServer to host a webserver at test time  
   2) Creating a TestableController Page to call  
-  3) Adding ``` UnitTestBootStrap.Register("YourAssembyName");  ``` to your   [Global.asax](https://github.com/approvals/Approvals.Net.Asp/blob/master/MvcApplication.Razor/Global.asax.cs)  
+  3) Adding ``` UnitTestBootStrap.RegisterWithDebugCondition("YourAssembyName");  ``` to your   [Global.asax](https://github.com/approvals/Approvals.Net.Asp/blob/master/MvcApplication.Razor/Global.asax.cs)  
   4) Using ```.Explicit()``` on your [views](https://github.com/approvals/Approvals.Net.Asp/blob/master/MvcApplication.Razor/Controllers/ExampleController.cs) or extending ``` : ControllerWithExplicitViews ```
    
 
