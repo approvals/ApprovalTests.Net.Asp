@@ -98,7 +98,7 @@ namespace ApprovalTests.Asp.Mvc
             VerifyWithException(() =>
             {
                 var url = GetURL(clazz, action, nvc);
-                AspApprovals.VerifyUrl(url, ScrubberUtils.Combine(HtmlScrubbers.ScrubMvc, scrubber ?? ScrubberUtils.NO_SCRUBBER));
+                AspApprovals.VerifyUrl(url, ScrubberUtils.Combine(HtmlScrubbers.ScrubMvc, MvcScrubbers.ScrubMvcVerificationToken, scrubber ?? ScrubberUtils.NO_SCRUBBER));
             });
         }
 

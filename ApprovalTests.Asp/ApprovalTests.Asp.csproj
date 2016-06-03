@@ -99,6 +99,7 @@
     <Compile Include="Mvc\TestableController.cs" />
     <Compile Include="Mvc\Bindings\ControllerUtilities.cs" />
     <Compile Include="Mvc\Utilities\ControllerWithExplicitViews.cs" />
+    <Compile Include="Mvc\Utilities\MvcScrubbers.cs" />
     <Compile Include="Mvc\Utilities\PathScrubbers.cs" />
     <Compile Include="Mvc\Utilities\StringUtils.cs" />
     <Compile Include="PortFactory.cs" />
