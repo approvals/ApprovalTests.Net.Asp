@@ -8,16 +8,10 @@ namespace ApprovalTests.Asp.Tests.Mvc
     [UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
     public class MvcScrubbingTest
     {
-     
-
         [TestMethod]
         public void TestMvcPage()
         {
             MvcApprovals.VerifyMvcPage<TestableExampleController>(c => c.TestToken);
         }
-
-
     }
-
- 
 }

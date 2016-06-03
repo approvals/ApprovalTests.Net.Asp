@@ -8,4 +8,4 @@ using System.Runtime.InteropServices;
 
 
 [assembly: AssemblyVersion("1.0")]     // Don't change this
-[assembly: AssemblyFileVersion("1.0.1")] // Change this
+[assembly: AssemblyFileVersion("1.1.0")] // Change this
