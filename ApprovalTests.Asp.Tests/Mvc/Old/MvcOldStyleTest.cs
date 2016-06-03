@@ -10,7 +10,7 @@ using MvcApplication1.Models;
 namespace ApprovalTests.Asp.Tests.Mvc.Old
 {
     [TestClass]
-    [UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
+    [UseReporter(typeof (DiffReporter), typeof (AllFailingTestsClipboardReporter))]
     public class MvcOldStyleTest
     {
         [TestMethod]
