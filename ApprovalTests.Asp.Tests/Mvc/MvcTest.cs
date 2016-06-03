@@ -51,5 +51,10 @@ namespace ApprovalTests.Asp.Tests.Mvc
         {
             return ControllerUnderTest.SaveName(new Person { Name = "Henrik" });
         }
+
+        public ActionResult TestToken()
+        {
+            return ControllerUnderTest.PageWithVerificationToken();
+        }
     }
 }

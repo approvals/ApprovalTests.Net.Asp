@@ -106,6 +106,7 @@
     <Compile Include="Mvc\EchoTest.cs" />
     <Compile Include="Mvc\ErrorMessageTest.cs" />
     <Compile Include="Mvc\InvalidPathTest.cs" />
+    <Compile Include="Mvc\MvcScrubbingTest.cs" />
     <Compile Include="Mvc\MvcTest.cs" />
     <Compile Include="Mvc\MvcTestBase.cs" />
     <Compile Include="Mvc\Old\MvcOldStyleTest.cs" />

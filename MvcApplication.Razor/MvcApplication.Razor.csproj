@@ -199,6 +199,7 @@
     <Content Include="Views\Example\SaveName.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Example\PageWithVerificationToken.cshtml" />
     <None Include="Views\NonExplicit\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>

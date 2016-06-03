@@ -19,6 +19,11 @@ namespace MvcApplication1.Controllers
              * Note: this is not actually needed if you use the ControllerWithExplicitViews as a base class
              */
         }
+        
+        public ActionResult PageWithVerificationToken()
+        {
+            return View().Explicit();
+        }
 
         [HttpPost]
         public ActionResult SaveName(Person person)
