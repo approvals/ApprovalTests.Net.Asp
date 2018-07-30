@@ -54,3 +54,29 @@ Available on NuGet
 Contributers
 ---
 The vast majority of this was created by @jamesrcounts & @Lnknaveen with help from @isidore
+
+## Explict Names
+If you need to add seams into your production code for testing, you will need the following added to you runtime
+
+```c#
+using System;
+using System.Web.Mvc;
+using ApprovalUtilities.CallStack;
+
+public static class MvcUtilites
+{
+	public static ViewResult CallViewResult<T>(Func<T, ActionResult> call, T parameter)
+	{
+	    var actionResult = (ViewResult) call(parameter);
+	    actionResult.ViewName = call.Method.Name;
+	    return actionResult;
+	}
+
+	public static ViewResult Explicit(this ViewResult view)
+	{
+	    view.ViewName = new Caller().Method.Name;
+	    return view;
+	}
+}
+
+```
