@@ -1,6 +1,6 @@
 # Approvals.Net.Asp
 
-Allows you to write simple tests againist Asp & Mvc pages.
+Allows you to write simple tests against Asp & Mvc pages.
 
 Mvc Pages
 ---
@@ -51,11 +51,11 @@ Available on NuGet
 ## LICENSE
 [Apache 2.0 License](https://github.com/SignalR/SignalR/blob/master/LICENSE.md)
 
-Contributers
+Contributors
 ---
 The vast majority of this was created by @jamesrcounts & @Lnknaveen with help from @isidore
 
-## Explict Names
+## Explicit Names
 If you need to add seams into your production code for testing, you will need the following added to you runtime
 
 ```c#
