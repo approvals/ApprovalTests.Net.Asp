@@ -215,6 +215,10 @@
       <Project>{438C00A6-E0A1-4728-B654-E7651A6F77BF}</Project>
       <Name>ApprovalTests.Asp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ApprovalUtilities.Mvc\ApprovalUtilities.Mvc.csproj">
+      <Project>{74e6a8b4-1928-44ae-a6ea-0951a437e8e2}</Project>
+      <Name>ApprovalUtilities.Mvc</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Example\Index.cshtml" />
