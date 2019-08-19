@@ -9,39 +9,39 @@ namespace ApprovalTests.Asp.Mvc.Bindings
     {
         public ActionResult Echo(string theMessage)
         {
-            string message = @"<pre> 
+            string message = $@"<pre> 
 If you are seeing this then ApprovalTests.Asp.Bootstrap is setup correctly
 
 Echoing 
-'{0}'
+'{theMessage}'
 
-</pre>".FormatWith(theMessage);
+</pre>";
 
             return Content(message);
         }
 
         public ActionResult Display(String theMessage)
         {
-            string message = @"<pre>
+            string message = $@"<pre>
 The assembly:
-{0}
+{theMessage}
 
 Is not allowed.
 If you would like to allow this assembly. 
 Please add a filter to your Global.asax page like
 
-UnitTestBootStrap.RegisterWithDebugCondition(""{1}"");
-</pre>".FormatWith(theMessage, theMessage.Split('\\').Last());
+UnitTestBootStrap.RegisterWithDebugCondition(""{theMessage.Split('\\').Last()}"");
+</pre>";
 
             return Content(message);
         }
 
         public ActionResult DisplayAssemblyNotReferedInMainProject(String theMessage)
         {
-            string message = @"<pre>
+            string message = $@"<pre>
 You MVC Project is missing a dll test project referencing
-{0}
-</pre>".FormatWith(theMessage);
+{theMessage}
+</pre>";
 
             return Content(message);
         }

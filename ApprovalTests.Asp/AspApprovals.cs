@@ -32,7 +32,7 @@ namespace ApprovalTests.Asp
 
 		private static void VerifyAspPage(Action testMethod, int port, Func<string, string> htmlScrubber)
 		{
-			var url = GetUrl(testMethod, "http://localhost:{0}".FormatWith(port));
+			var url = GetUrl(testMethod, $"http://localhost:{port}");
 			VerifyUrl(url, htmlScrubber);
 		}
 
@@ -43,7 +43,7 @@ namespace ApprovalTests.Asp
 			var path = type.Namespace.Substring(type.Assembly.GetName().Name.Length);
 			path = path.Replace('.', '/');
 			var method = testMethod.Method.Name;
-			return "{0}{1}/{2}.aspx?{3}".FormatWith(host, path, clazz, method);
+			return $"{host}{path}/{clazz}.aspx?{method}";
 		}
 
 		public static void VerifyUrl(string url)
@@ -70,7 +70,7 @@ namespace ApprovalTests.Asp
 					var html = client.DownloadString(url);
 					if (!html.Contains("<base"))
 					{
-						html = html.Replace("<head>", "<head><base href=\"{0}\">".FormatWith(baseUrl));
+						html = html.Replace("<head>", $"<head><base href=\"{baseUrl}\">");
 					}
 
 					return html;
@@ -79,14 +79,14 @@ namespace ApprovalTests.Asp
 			catch (Exception e)
 			{
 				throw new Exception(
-					"The following error occured while connecting to:\r\n{0}\r\nError:\r\n{1}".FormatWith(url, e.Message), e);
+					$"The following error occured while connecting to:\r\n{url}\r\nError:\r\n{e.Message}", e);
 			}
 		}
 
 		public static string ResolveUrl(string rawUrl)
 		{
 			rawUrl = string.IsNullOrWhiteSpace(rawUrl) ? "/" : rawUrl.TrimStart('~');
-			return rawUrl.StartsWith("/") ? "http://localhost:{0}{1}".FormatWith(PortFactory.AspPort, rawUrl) : rawUrl;
+			return rawUrl.StartsWith("/") ? $"http://localhost:{PortFactory.AspPort}{rawUrl}" : rawUrl;
 		}
 
 

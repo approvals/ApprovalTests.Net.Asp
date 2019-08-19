@@ -14,10 +14,9 @@ namespace ApprovalTests.Asp
 				if (aspPort == null)
 				{
 					throw new MissingFieldException(
-						@"{0}.AspPort is uninitialized.
-You are using a method that is using {0}.AspPort,
-but you have not set a value for this port first"
-							.FormatWith(typeof(PortFactory).FullName));
+						$@"{typeof(PortFactory).FullName}.AspPort is uninitialized.
+You are using a method that is using {typeof(PortFactory).FullName}.AspPort,
+but you have not set a value for this port first");
 				}
 				return (int)aspPort;
 			}
@@ -33,10 +32,9 @@ but you have not set a value for this port first"
 				if (mvcPort == null)
 				{
 					throw new MissingFieldException(
-						@"{0}.MvcPort is uninitialized.
-You are using a method that is using {0}.MvcPort,
-but you have not set a value for this port first"
-							.FormatWith(typeof(PortFactory).FullName));
+						$@"{typeof(PortFactory).FullName}.MvcPort is uninitialized.
+You are using a method that is using {typeof(PortFactory).FullName}.MvcPort,
+but you have not set a value for this port first");
 				}
 				return (int)mvcPort;
 			}

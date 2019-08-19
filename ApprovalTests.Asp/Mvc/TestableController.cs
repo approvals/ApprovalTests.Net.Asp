@@ -38,7 +38,7 @@ namespace ApprovalTests.Asp.Mvc
 
             var fileNotfoundException = ex as FileNotFoundException;
 
-            var message = @"<pre>
+            var message = $@"<pre>
 Exception Thrown on Server.
 If this is a 'View not Found' the most likely reason is your ActionResult is being calculated incorrectly. 
 
@@ -55,8 +55,8 @@ For Example:
  (wrong) return View();
  (right) return View().Explicit();
 
-Message: {0}
-</pre>".FormatWith(ex.Message);
+Message: {ex.Message}
+</pre>";
 
             filterContext.Result = fileNotfoundException != null ?
                 new ContentResponseMessageController().DisplayAssemblyNotReferedInMainProject(fileNotfoundException.Message) :

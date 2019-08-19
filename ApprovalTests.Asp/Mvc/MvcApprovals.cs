@@ -30,7 +30,7 @@ namespace ApprovalTests.Asp.Mvc
                     if (!str2.Contains("<base"))
                     {
 
-                        str2 = str2.Replace("<head>", "<head><base href=\"{0}\">".FormatWith(str1));
+                        str2 = str2.Replace("<head>", $"<head><base href=\"{str1}\">");
                     }
                     return str2;
                 }
@@ -151,7 +151,7 @@ See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/mast
         private static string GetURL(string clazz, string action, NameValueCollection nvcQueryString)
         {
             var queryString = nvcQueryString == null ? string.Empty : string.Join("&", Array.ConvertAll(nvcQueryString.AllKeys, key => string.Format("{0}={1}", key, nvcQueryString[key])));
-            return "http://localhost:{0}/{1}/{2}?{3}".FormatWith(PortFactory.MvcPort, clazz, action, queryString);
+            return $"http://localhost:{PortFactory.MvcPort}/{clazz}/{action}?{queryString}";
         }
 
 
@@ -176,7 +176,7 @@ See an Example Test at: https://github.com/approvals/Approvals.Net.Asp/blob/mast
         {
             VerifyWithException(() =>
             {
-                Asp.AspApprovals.VerifyUrl("http://localhost:{0}/ApprovalTests/Echo/Testing123".FormatWith(PortFactory.MvcPort));
+                Asp.AspApprovals.VerifyUrl($"http://localhost:{PortFactory.MvcPort}/ApprovalTests/Echo/Testing123");
             });
         }
     }
