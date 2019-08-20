@@ -1,5 +1,6 @@
 ﻿using System.Collections.Specialized;
 using ApprovalTests.Asp.Mvc;
+using ApprovalTests.Namers.StackTraceParsers;
 using ApprovalTests.Reporters;
 using CassiniDev;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

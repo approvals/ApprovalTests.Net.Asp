@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ApprovalTests.Namers.StackTraceParsers;
 
 namespace ApprovalTests.Asp.Tests
 {
@@ -19,6 +20,8 @@ namespace ApprovalTests.Asp.Tests
         {
             PortFactory.MvcPort = 11625;
             server.StartServer(MvcApplication.Path, PortFactory.MvcPort, "/", "localhost");
+            AttributeStackTraceParser.FileInfoIsValidFilter = caller => true;
+
         }
 
         [AssemblyCleanup()]
