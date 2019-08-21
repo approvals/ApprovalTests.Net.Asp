@@ -15,6 +15,7 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="SmallFry" Version="0.5.0" />
+    <PackageReference Include="CassiniDev" Version="4.0" />
     <ProjectReference Include="..\ApprovalTests.Asp\ApprovalTests.Asp.csproj" />
     <ProjectReference Include="..\ApprovalUtilities.Mvc\ApprovalUtilities.Mvc.csproj" />
     <ProjectReference Include="..\Asp.Net.Demo\Asp.Net.Demo.csproj" />
@@ -23,12 +24,5 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="Microsoft.CSharp" />
-
-    <Reference Include="CassiniDev4-lib">
-      <HintPath>..\packages\CassiniDev.4.0\lib\net40\CassiniDev4-lib.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Web" />
   </ItemGroup>
-
 </Project>
