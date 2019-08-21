@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using ApprovalUtilities.Utilities;
 using System.IO;
 using ApprovalTests.Asp.Mvc.Bindings;
 

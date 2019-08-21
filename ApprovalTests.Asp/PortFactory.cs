@@ -1,5 +1,4 @@
 using System;
-using ApprovalUtilities.Utilities;
 
 namespace ApprovalTests.Asp
 {

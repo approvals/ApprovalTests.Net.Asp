@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Web.Mvc;
-using ApprovalUtilities.Utilities;
 
 namespace ApprovalTests.Asp.Mvc.Bindings
 {

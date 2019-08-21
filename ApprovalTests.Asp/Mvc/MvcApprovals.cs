@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using ApprovalTests.ExceptionalExceptions;
 using ApprovalTests.Html;
 using ApprovalTests.Scrubber;
-using ApprovalUtilities.Utilities;
 using System.Linq.Expressions;
 using ApprovalTests.Asp.Mvc.Bindings;
 using ApprovalTests.Asp.Mvc.Utilities;

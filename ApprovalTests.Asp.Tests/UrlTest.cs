@@ -1,7 +1,4 @@
-﻿using ApprovalTests.Asp;
-
-using ApprovalUtilities.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ApprovalTests.Asp.Tests
 {

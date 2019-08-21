@@ -1,7 +1,6 @@
 namespace ApprovalTests.Asp.Tests 
 {
-	using System;
-	using SmallFry;
+    using SmallFry;
 
     public static class SmallFryConfig 
 	{

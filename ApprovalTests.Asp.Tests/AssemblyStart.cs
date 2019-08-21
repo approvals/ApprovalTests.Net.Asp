@@ -1,11 +1,6 @@
 ﻿using CassiniDev;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcApplication1;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ApprovalTests.Namers.StackTraceParsers;
 
 namespace ApprovalTests.Asp.Tests
