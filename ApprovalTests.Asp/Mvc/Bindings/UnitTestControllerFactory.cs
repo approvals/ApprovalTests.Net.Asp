@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ApprovalUtilities.Asp.Mvc.Bindings;
 using ApprovalUtilities.SimpleLogger;
 using ApprovalUtilities.Utilities;
 

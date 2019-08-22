@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApprovalTests.Asp.Mvc.Bindings
+namespace ApprovalUtilities.Asp.Mvc.Bindings
 {
     public class IllegalAssemblyException : Exception
     {
@@ -9,7 +9,7 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         public IllegalAssemblyException(string assemblyPath)
         {
             this.assemblyPath = assemblyPath;
-           
+
         }
     }
 }
