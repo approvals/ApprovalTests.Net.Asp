@@ -8,6 +8,9 @@ using MvcApplication1;
 using MvcApplication1.Controllers;
 using MvcApplication1.Models;
 using ApprovalTests.Asp.Mvc.Utilities;
+using ApprovalUtilities.Asp.Mvc;
+using ApprovalUtilities.Asp.Mvc.Bindings;
+
 
 namespace MaliciousCode.Tests
 {

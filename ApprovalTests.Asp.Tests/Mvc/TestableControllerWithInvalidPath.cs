@@ -1,6 +1,7 @@
 ﻿using ApprovalTests.Asp.Mvc;
 using MvcApplication1.Controllers;
 using System.Web.Mvc;
+using ApprovalUtilities.Asp.Mvc;
 
 namespace ApprovalTests.Asp.Tests.Mvc
 {

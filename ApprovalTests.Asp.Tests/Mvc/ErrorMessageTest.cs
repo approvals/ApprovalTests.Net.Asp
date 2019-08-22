@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
 using ApprovalTests.Asp.Mvc;
+using ApprovalUtilities.Asp.Mvc;
+using ApprovalUtilities.Asp.Mvc.Bindings;
 using ApprovalTests.Reporters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcApplication1.Controllers;

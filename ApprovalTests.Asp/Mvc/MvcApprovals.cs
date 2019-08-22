@@ -8,7 +8,8 @@ using ApprovalTests.ExceptionalExceptions;
 using ApprovalTests.Html;
 using ApprovalTests.Scrubber;
 using System.Linq.Expressions;
-using ApprovalTests.Asp.Mvc.Bindings;
+using ApprovalUtilities.Asp.Mvc.Bindings;
+using ApprovalUtilities.Asp.Mvc;
 using ApprovalTests.Asp.Mvc.Utilities;
 
 namespace ApprovalTests.Asp.Mvc
