@@ -1,6 +1,6 @@
 using System.Web.UI;
 
-namespace ApprovalTests.Asp
+namespace ApprovalUtilities.Asp
 {
 	public class AspTestingUtils
 	{
