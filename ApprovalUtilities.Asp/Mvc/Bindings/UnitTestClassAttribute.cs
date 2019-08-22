@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApprovalTests.Asp.Mvc.Bindings
+namespace ApprovalUtilities.Asp.Mvc.Bindings
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class UnitTestClassAttribute : Attribute
