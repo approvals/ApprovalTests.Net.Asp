@@ -3,72 +3,43 @@ using System.Web;
 
 namespace ApprovalTests.Asp
 {
-	public class MockContextBase : HttpContextBase
-	{
-		private readonly string url;
+    public class MockContextBase : HttpContextBase
+    {
+        private readonly string url;
 
-		public MockContextBase(string url)
-		{
-			this.url = url;
-		}
+        public MockContextBase(string url)
+        {
+            this.url = url;
+        }
 
-		public override HttpRequestBase Request
-		{
-			get { return new MockHttpRequest(url); }
-		}
-		public override HttpResponseBase Response
-		{
-			get
-			{
-				return new MockHttpResponse();
-			}
-		}
-	}
+        public override HttpRequestBase Request => new MockHttpRequest(url);
 
-	public class MockHttpResponse : HttpResponseBase
-	{
-		public override string ApplyAppPathModifier(string virtualPath)
-		{
-			return virtualPath;
-		}
-	}
+        public override HttpResponseBase Response => new MockHttpResponse();
+    }
 
-	public class MockHttpRequest : HttpRequestBase
-	{
-		private readonly string url;
+    public class MockHttpResponse : HttpResponseBase
+    {
+        public override string ApplyAppPathModifier(string virtualPath)
+        {
+            return virtualPath;
+        }
+    }
 
-		public MockHttpRequest(string url)
-		{
-			this.url = url;
-		}
+    public class MockHttpRequest : HttpRequestBase
+    {
+        private readonly string url;
 
-		public override string AppRelativeCurrentExecutionFilePath
-		{
-			get { return url; }
-		}
+        public MockHttpRequest(string url)
+        {
+            this.url = url;
+        }
 
-		public override string ApplicationPath
-		{
-			get
-			{
-				return url.Substring(1);
-			}
-		}
+        public override string AppRelativeCurrentExecutionFilePath => url;
 
-		public override string PathInfo
-		{
-			get
-			{
-				return "";
-			}
-		}
-		public override System.Collections.Specialized.NameValueCollection ServerVariables
-		{
-			get
-			{
-				return new NameValueCollection();
-			}
-		}
+        public override string ApplicationPath => url.Substring(1);
 
-	}
+        public override string PathInfo => "";
+
+        public override NameValueCollection ServerVariables => new NameValueCollection();
+    }
 }

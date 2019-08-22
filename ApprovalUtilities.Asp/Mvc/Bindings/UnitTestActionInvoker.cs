@@ -10,7 +10,5 @@ namespace ApprovalUtilities.Asp.Mvc.Bindings
             return base.InvokeAction(controllerContext,
                 HttpContext.Current.Request.QueryString["testAction"] ?? actionName);
         }
-
-        
     }
 }

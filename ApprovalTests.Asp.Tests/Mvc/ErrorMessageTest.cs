@@ -1,15 +1,14 @@
 ﻿using System.Web.Mvc;
 using ApprovalTests.Asp.Mvc;
-using ApprovalUtilities.Asp.Mvc;
-using ApprovalUtilities.Asp.Mvc.Bindings;
 using ApprovalTests.Reporters;
+using ApprovalUtilities.Asp.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MvcApplication1.Controllers;
 
 namespace ApprovalTests.Asp.Tests.Mvc
 {
     [TestClass]
-    [UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
+    [UseReporter(typeof(DiffReporter), typeof(FileLauncherReporter))]
     public class ErrorMessageTest
     {
         [TestMethod]

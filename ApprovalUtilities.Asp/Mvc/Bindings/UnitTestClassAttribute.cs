@@ -9,6 +9,7 @@ namespace ApprovalUtilities.Asp.Mvc.Bindings
         {
             ClassType = type;
         }
+
         public Type ClassType { get; set; }
     }
 }

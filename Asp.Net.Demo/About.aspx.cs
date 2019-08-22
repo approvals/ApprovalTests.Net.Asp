@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Web.UI;
 
 namespace Asp.Net.Demo
 {
-	public partial class About : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
-
-		}
-	}
+    public partial class About : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
 }

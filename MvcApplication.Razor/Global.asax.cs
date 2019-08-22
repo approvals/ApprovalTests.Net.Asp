@@ -13,10 +13,7 @@ namespace MvcApplication1
 
     public class MvcApplication : HttpApplication
     {
-        public static string Path
-        {
-            get { return PathUtilities.GetDirectoryForCaller(); }
-        }
+        public static string Path => PathUtilities.GetDirectoryForCaller();
 
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
@@ -30,8 +27,8 @@ namespace MvcApplication1
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Cool", action = "Index", id = UrlParameter.Optional } // Parameter defaults
-                );
+                new {controller = "Cool", action = "Index", id = UrlParameter.Optional} // Parameter defaults
+            );
         }
 
         protected void Application_Start()
@@ -50,6 +47,4 @@ namespace MvcApplication1
             HttpContext.Current.Response.AddHeader("X-Frame-Options", "SAMEORIGIN");
         }
     }
-
-
 }

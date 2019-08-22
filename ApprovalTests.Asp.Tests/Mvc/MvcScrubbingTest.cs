@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ApprovalTests.Asp.Tests.Mvc
 {
     [TestClass]
-    [UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
+    [UseReporter(typeof(DiffReporter), typeof(FileLauncherReporter))]
     public class MvcScrubbingTest
     {
         [TestMethod]

@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -8,7 +7,7 @@ namespace ApprovalUtilities.Asp.Mvc.Bindings
     {
         public ActionResult Echo(string theMessage)
         {
-            string message = $@"<pre> 
+            var message = $@"<pre> 
 If you are seeing this then ApprovalTests.Asp.Bootstrap is setup correctly
 
 Echoing 
@@ -19,9 +18,9 @@ Echoing
             return Content(message);
         }
 
-        public ActionResult Display(String theMessage)
+        public ActionResult Display(string theMessage)
         {
-            string message = $@"<pre>
+            var message = $@"<pre>
 The assembly:
 {theMessage}
 
@@ -35,9 +34,9 @@ UnitTestBootStrap.RegisterWithDebugCondition(""{theMessage.Split('\\').Last()}""
             return Content(message);
         }
 
-        public ActionResult DisplayAssemblyNotReferedInMainProject(String theMessage)
+        public ActionResult DisplayAssemblyNotReferedInMainProject(string theMessage)
         {
-            string message = $@"<pre>
+            var message = $@"<pre>
 You MVC Project is missing a dll test project referencing
 {theMessage}
 </pre>";

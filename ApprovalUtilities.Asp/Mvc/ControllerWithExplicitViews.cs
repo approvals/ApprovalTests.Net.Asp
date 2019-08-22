@@ -8,10 +8,7 @@ namespace ApprovalUtilities.Asp.Mvc
     {
         protected override ViewResult View(string viewName, string masterName, object model)
         {
-            if (viewName == null)
-            {
-                viewName = FindViewName();
-            }
+            if (viewName == null) viewName = FindViewName();
             return base.View(viewName, masterName, model);
         }
 

@@ -53,9 +53,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ApprovalTests, Version=3.0.0.0, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
-      <HintPath>..\packages\ApprovalTests.4.2.0\lib\net461\ApprovalTests.dll</HintPath>
-    </Reference>
     <Reference Include="ApprovalUtilities, Version=3.0.0.0, Culture=neutral, PublicKeyToken=11bd7d124fc62e0f, processorArchitecture=MSIL">
       <HintPath>..\packages\ApprovalUtilities.4.2.0\lib\net461\ApprovalUtilities.dll</HintPath>
     </Reference>
@@ -190,10 +187,6 @@
     <Content Include="Site.Master" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ApprovalTests.Asp\ApprovalTests.Asp.csproj">
-      <Project>{438c00a6-e0a1-4728-b654-e7651a6f77bf}</Project>
-      <Name>ApprovalTests.Asp</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ApprovalUtilities.Asp\ApprovalUtilities.Asp.csproj">
       <Project>{74e6a8b4-1928-44ae-a6ea-0951a437e8e2}</Project>
       <Name>ApprovalUtilities.Asp</Name>

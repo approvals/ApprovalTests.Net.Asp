@@ -9,7 +9,6 @@ namespace ApprovalUtilities.Asp.Mvc.Bindings
         public IllegalAssemblyException(string assemblyPath)
         {
             this.assemblyPath = assemblyPath;
-
         }
     }
 }

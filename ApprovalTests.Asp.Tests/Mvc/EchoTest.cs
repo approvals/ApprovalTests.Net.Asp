@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ApprovalTests.Asp.Tests.Mvc
 {
     [TestClass]
-    public class EchoTest 
+    public class EchoTest
     {
         [TestMethod]
         public void TestBootStrapReady()

@@ -16,10 +16,10 @@ namespace ApprovalTests.Asp.Mvc
 
         public static string GetMethodName<T>(Expression<Func<T, Func<ActionResult>>> expression)
         {
-            var unaryExpression = (UnaryExpression)expression.Body;
-            var methodCallExpression = (MethodCallExpression)unaryExpression.Operand;
-            var constantExpression = (ConstantExpression)methodCallExpression.Object;
-            var methodInfo = (MemberInfo)constantExpression.Value;
+            var unaryExpression = (UnaryExpression) expression.Body;
+            var methodCallExpression = (MethodCallExpression) unaryExpression.Operand;
+            var constantExpression = (ConstantExpression) methodCallExpression.Object;
+            var methodInfo = (MemberInfo) constantExpression.Value;
             return methodInfo.Name;
         }
     }
