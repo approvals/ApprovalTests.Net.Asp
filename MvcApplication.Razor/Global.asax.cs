@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ApprovalTests.Asp.Mvc.Bindings;
@@ -34,6 +36,7 @@ namespace MvcApplication1
 
         protected void Application_Start()
         {
+            AntiForgeryConfig.SuppressXFrameOptionsHeader = true;
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
@@ -42,6 +45,10 @@ namespace MvcApplication1
             //UnitTestBootStrap.RegisterWithTestCondition("ApprovalTests.Asp.Tests");
         }
 
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            HttpContext.Current.Response.AddHeader("X-Frame-Options", "SAMEORIGIN");
+        }
     }
 
 
