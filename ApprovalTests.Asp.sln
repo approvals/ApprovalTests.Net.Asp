@@ -20,7 +20,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2A83E2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaliciousCode.Tests", "MaliciousCode.Tests\MaliciousCode.Tests.csproj", "{20FF463D-B345-423F-9DFB-81B1DABB14BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalUtilities.Mvc", "ApprovalUtilities.Mvc\ApprovalUtilities.Mvc.csproj", "{74E6A8B4-1928-44AE-A6EA-0951A437E8E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalUtilities.Asp", "ApprovalUtilities.Asp\ApprovalUtilities.Asp.csproj", "{74E6A8B4-1928-44AE-A6EA-0951A437E8E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

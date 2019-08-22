@@ -17,7 +17,7 @@
     <PackageReference Include="SmallFry" Version="0.5.0" />
     <PackageReference Include="CassiniDev" Version="4.0" />
     <ProjectReference Include="..\ApprovalTests.Asp\ApprovalTests.Asp.csproj" />
-    <ProjectReference Include="..\ApprovalUtilities.Mvc\ApprovalUtilities.Mvc.csproj" />
+    <ProjectReference Include="..\ApprovalUtilities.Asp\ApprovalUtilities.Asp.csproj" />
     <ProjectReference Include="..\Asp.Net.Demo\Asp.Net.Demo.csproj" />
     <ProjectReference Include="..\MvcApplication.Razor\MvcApplication.Razor.csproj" />
     <Reference Include="System" />
