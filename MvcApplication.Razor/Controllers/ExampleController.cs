@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using ApprovalTests.Asp.Mvc.Utilities;
 using ApprovalUtilities.Asp.Mvc;
 using MvcApplication1.Models;
 

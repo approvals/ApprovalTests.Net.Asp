@@ -122,6 +122,10 @@
       <Project>{438C00A6-E0A1-4728-B654-E7651A6F77BF}</Project>
       <Name>ApprovalTests.Asp</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ApprovalUtilities.Asp\ApprovalUtilities.Asp.csproj">
+      <Project>{74e6a8b4-1928-44ae-a6ea-0951a437e8e2}</Project>
+      <Name>ApprovalUtilities.Asp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MvcApplication.Razor\MvcApplication.Razor.csproj">
       <Project>{350DD60C-8C32-449C-9029-9E0195C756AA}</Project>
       <Name>MvcApplication.Razor</Name>
