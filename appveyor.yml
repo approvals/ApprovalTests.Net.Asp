@@ -1,0 +1,5 @@
+image: Visual Studio 2019
+skip_commits:
+  message: /d */
+artifacts:
+- path: nuget_packages\*.nupkg
