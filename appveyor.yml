@@ -1,5 +1,7 @@
 image: Visual Studio 2019
 skip_commits:
   message: /d */
+build:
+  project: ApprovalTests.Asp.sln
 artifacts:
 - path: nuget_packages\*.nupkg
