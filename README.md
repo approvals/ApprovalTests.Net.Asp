@@ -1,6 +1,6 @@
 # Approvals.Net.Asp
 
-[![Build status](https://ci.appveyor.com/api/projects/status/github/approvals/Approvals.Net.Asp)](https://ci.appveyor.com/project/isidore/approvals-net-asp/branch/master) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![NuGet Status](http://img.shields.io/nuget/v/ApprovalTests.svg?style=flat)](https://www.nuget.org/packages/ApprovalTests.asp)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/approvals/ApprovalTests.Net.Asp)](https://ci.appveyor.com/project/isidore/approvaltests-net-asp/branch/master) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![NuGet Status](http://img.shields.io/nuget/v/ApprovalTests.svg?style=flat)](https://www.nuget.org/packages/ApprovalTests.asp)
 
 
 Allows you to write simple tests againist Asp & Mvc pages.
