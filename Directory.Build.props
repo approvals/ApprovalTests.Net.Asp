@@ -10,8 +10,7 @@
     <AssemblyInformationalVersion>$(Version)</AssemblyInformationalVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Authors>Llewellyn Falco &amp; Naveen Kumar Lokesh</Authors>
-    <PackageLicense>Apache-2.0</PackageLicense>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Copyright>Copyright $([System.DateTime]::UtcNow.ToString(yyyy)) Llewellyn Falco &amp; Naveen Kumar Lokesh. All rights reserved</Copyright>
     <PackageTags>Approvals ApprovalTests ApprovalTest Test Verification Verify Approve Testing ASP MVC Controller View</PackageTags>
     <PackageIconUrl>https://avatars3.githubusercontent.com/u/36907</PackageIconUrl>
