@@ -9,7 +9,9 @@ namespace ApprovalTests.Asp.Tests.Mvc
         [TestMethod]
         public void TestBootStrapReady()
         {
+            // begin-snippet: verify_bootstrap_configured
             MvcApprovals.VerifyApprovalBootstrap();
+            // end-snippet
         }
     }
 }

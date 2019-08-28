@@ -7,6 +7,10 @@
   <ItemGroup>
     <PackageReference Include="ApprovalUtilities" Version="4.2.0" />
     <PackageReference Include="ApprovalTests" Version="4.2.0" />
+    <PackageReference Include="MarkdownSnippets.MsBuild" Version="16.3.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
