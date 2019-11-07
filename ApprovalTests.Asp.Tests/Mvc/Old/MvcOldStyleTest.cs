@@ -1,16 +1,14 @@
 ﻿using System.Collections.Specialized;
 using ApprovalTests.Asp.Mvc;
 using ApprovalTests.Reporters;
-using CassiniDev;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MvcApplication1;
 using MvcApplication1.Controllers;
 using MvcApplication1.Models;
 
 namespace ApprovalTests.Asp.Tests.Mvc.Old
 {
     [TestClass]
-    [UseReporter(typeof (DiffReporter), typeof (AllFailingTestsClipboardReporter))]
+    [UseReporter(typeof(DiffReporter), typeof(AllFailingTestsClipboardReporter))]
     public class MvcOldStyleTest
     {
         [TestMethod]

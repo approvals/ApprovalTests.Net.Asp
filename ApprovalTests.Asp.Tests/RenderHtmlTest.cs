@@ -1,19 +1,19 @@
-﻿# if DEBUG && !__MonoCS__
-using ApprovalTests.Asp;
+﻿using ApprovalTests.Asp;
 using ApprovalTests.Reporters;
 using ApprovalTests.Scrubber;
 using Asp.Net.Demo;
 using Asp.Net.Demo.Orders;
-using CassiniDev;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+# if DEBUG && !__MonoCS__
+using CassiniDev;
 
 namespace ApprovalTests.Tests.Asp
 {
-	[TestClass]
-	[UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
-	public class RenderHtmlTest
-	{
-        private CassiniDevServer server = new CassiniDevServer();
+    [TestClass]
+    [UseReporter(typeof(DiffReporter), typeof(FileLauncherReporter))]
+    public class RenderHtmlTest
+    {
+        private readonly CassiniDevServer server = new CassiniDevServer();
 
         [TestInitialize]
         public void Setup()
@@ -28,21 +28,21 @@ namespace ApprovalTests.Tests.Asp
             server.StopServer();
         }
 
-		[TestMethod]
-		public void TestSimpleInvoice()
-		{
-			AspApprovals.VerifyAspPage(new InvoiceView().TestSimpleInvoice, HtmlScrubbers.ScrubAsp);
+        [TestMethod]
+        public void TestSimpleInvoice()
+        {
+            AspApprovals.VerifyAspPage(new InvoiceView().TestSimpleInvoice, HtmlScrubbers.ScrubAsp);
 
-			//  -- These are the same thing
-			//AspApprovals.VerifyUrl("http://localhost:1360/Orders/InvoiceView.aspx?TestSimpleInvoice");
-		}
+            //  -- These are the same thing
+            //AspApprovals.VerifyUrl("http://localhost:1360/Orders/InvoiceView.aspx?TestSimpleInvoice");
+        }
 
-		[TestMethod]
-		public void TestInternationalization()
-		{
+        [TestMethod]
+        public void TestInternationalization()
+        {
             AspApprovals.VerifyUrl("http://localhost:1360/Encoding.UTF8.html", HtmlScrubbers.ScrubBrowserLink);
-		}
-	}
+        }
+    }
 }
 
 #endif

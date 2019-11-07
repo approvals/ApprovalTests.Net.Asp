@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
-namespace ApprovalTests.Asp.Mvc.Bindings
+namespace ApprovalUtilities.Asp.Mvc.Bindings
 {
     public class UnitTestActionInvoker : ControllerActionInvoker
     {
@@ -11,7 +10,5 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             return base.InvokeAction(controllerContext,
                 HttpContext.Current.Request.QueryString["testAction"] ?? actionName);
         }
-
-        
     }
 }

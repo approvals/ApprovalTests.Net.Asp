@@ -1,0 +1,9 @@
+image: Visual Studio 2019
+skip_commits:
+  message: /d */
+before_build:
+  - nuget restore
+build:
+  project: ApprovalTests.Asp.sln
+artifacts:
+- path: nuget_packages\*.nupkg

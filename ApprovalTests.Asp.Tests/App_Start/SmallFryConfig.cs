@@ -1,13 +1,12 @@
-namespace ApprovalTests.Asp.Tests 
-{
-	using System;
-	using SmallFry;
+using SmallFry;
 
-    public static class SmallFryConfig 
-	{
-        public static void RegisterServices(IServiceCollection services) 
-		{
-			/*
+namespace ApprovalTests.Asp.Tests
+{
+    public static class SmallFryConfig
+    {
+        public static void RegisterServices(IServiceCollection services)
+        {
+            /*
              * Register your services here. You should call this method from
              * Application_Start in Global.asax, like so:
              * 

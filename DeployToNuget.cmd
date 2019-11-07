@@ -1,7 +1,10 @@
-rem .nuget\NuGet.exe setapikey e39ea-get-the-full-key-on-nuget.org
 
-call CreateNuget.cmd
-.nuget\NuGet.exe push nuget_packages\ApprovalTests.Asp.1.?.?.nupkg
-.nuget\NuGet.exe push nuget_packages\ApprovalTests.Asp.1.?.?.symbols.nupkg
+rem nuget_cli\NuGet.exe setapikey e39ea-get-the-full-key-on-nuget.org
+rem increment version in Directory.Build.props
+rem delete nuget_packages and rebuild
+rem choco install nuget.commandline
+
+NuGet push nuget_packages\ApprovalUtilities.Asp.?.?.?.nupkg -Source nuget.org
+NuGet push nuget_packages\ApprovalTests.Asp.?.?.?.nupkg -Source nuget.org
 
 pause 

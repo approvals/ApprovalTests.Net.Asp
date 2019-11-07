@@ -1,25 +1,9 @@
-﻿using System;
+﻿using System.IO;
 using System.Web.Mvc;
-using ApprovalUtilities.Utilities;
-using System.IO;
-using ApprovalTests.Asp.Mvc.Bindings;
+using ApprovalUtilities.Asp.Mvc.Bindings;
 
-namespace ApprovalTests.Asp.Mvc
+namespace ApprovalUtilities.Asp.Mvc
 {
-    public class TestableController<T> : TestableControllerBase
-        where T : class, IController
-    {
-        public TestableController(T t)
-            : base(t)
-        {
-        }
-
-        public T ControllerUnderTest
-        {
-            get { return GenericControllerUnderTest as T; }
-        }
-    }
-
     public class TestableControllerBase : Controller
     {
         public TestableControllerBase(IController controllerUnderTest)
@@ -27,18 +11,18 @@ namespace ApprovalTests.Asp.Mvc
             GenericControllerUnderTest = controllerUnderTest;
         }
 
-        protected IController GenericControllerUnderTest { get; private set; }
+        protected IController GenericControllerUnderTest { get; }
 
         protected override void OnException(ExceptionContext filterContext)
         {
-            Exception ex = filterContext.Exception;
+            var ex = filterContext.Exception;
             filterContext.ExceptionHandled = true;
 
             var model = new HandleErrorInfo(filterContext.Exception, "Controller", "Action");
 
             var fileNotfoundException = ex as FileNotFoundException;
 
-            var message = @"<pre>
+            var message = $@"<pre>
 Exception Thrown on Server.
 If this is a 'View not Found' the most likely reason is your ActionResult is being calculated incorrectly. 
 
@@ -55,15 +39,25 @@ For Example:
  (wrong) return View();
  (right) return View().Explicit();
 
-Message: {0}
-</pre>".FormatWith(ex.Message);
+Message: {ex.Message}
+</pre>";
 
-            filterContext.Result = fileNotfoundException != null ?
-                new ContentResponseMessageController().DisplayAssemblyNotReferedInMainProject(fileNotfoundException.Message) :
-                new ContentResult { Content = message };
+            filterContext.Result = fileNotfoundException != null
+                ? new ContentResponseMessageController().DisplayAssemblyNotReferedInMainProject(fileNotfoundException
+                    .Message)
+                : new ContentResult {Content = message};
+        }
+    }
 
+
+    public class TestableController<T> : TestableControllerBase
+        where T : class, IController
+    {
+        public TestableController(T t)
+            : base(t)
+        {
         }
 
-
+        public T ControllerUnderTest => GenericControllerUnderTest as T;
     }
 }

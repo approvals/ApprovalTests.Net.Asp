@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Web.UI;
 
 namespace Asp.Net.Demo.Account
 {
-	public partial class ChangePasswordSuccess : System.Web.UI.Page
-	{
-		protected void Page_Load(object sender, EventArgs e)
-		{
-
-		}
-	}
+    public partial class ChangePasswordSuccess : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
 }

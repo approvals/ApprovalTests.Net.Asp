@@ -1,6 +1,6 @@
 ﻿using System;
-using ApprovalUtilities.Utilities;
 using System.IO;
+using ApprovalUtilities.Utilities;
 
 namespace ApprovalTests.Asp.Mvc.Utilities
 {

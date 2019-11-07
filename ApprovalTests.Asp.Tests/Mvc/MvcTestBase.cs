@@ -12,15 +12,14 @@ namespace ApprovalTests.Asp.Tests.Mvc
         public void Setup()
         {
             PortFactory.MvcPort = 11625;
-            this.server.StartServer(MvcApplication.Path, PortFactory.MvcPort, "/", "localhost");
+            server.StartServer(MvcApplication.Path, PortFactory.MvcPort, "/", "localhost");
         }
-
 
 
         [TestCleanup]
         public void TearDown()
         {
-            this.server.StopServer();
+            server.StopServer();
         }
     }
 }

@@ -2,19 +2,18 @@
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using System.Web.Routing;
 using ApprovalUtilities.SimpleLogger;
 using ApprovalUtilities.Utilities;
 
-namespace ApprovalTests.Asp.Mvc.Bindings
+namespace ApprovalUtilities.Asp.Mvc.Bindings
 {
     public class UnitTestControllerFactory : DefaultControllerFactory
     {
-        public static string[] ALLOWED_DLLS;
         private const string TESTABLE_CONTROLLER_TYPE = "TESTABLE_CONTROLLER_INSTANCE";
         private const string CONTROLLER_UNDER_TEST = "CONTROLLER_UNDER_TEST";
         private const string CONTROLLER_NAME = "controller";
+        public static string[] ALLOWED_DLLS;
 
         public UnitTestControllerFactory()
         {
@@ -25,21 +24,15 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         {
             try
             {
-                Type returnValue = GetEchoResponseType(requestContext);
-                if (returnValue != null)
-                {
-                    return returnValue;
-                }
+                var returnValue = GetEchoResponseType(requestContext);
+                if (returnValue != null) return returnValue;
 
                 var requestItems = requestContext.HttpContext.Items;
                 returnValue = base.GetControllerType(requestContext, controllerName);
 
                 if (!requestItems.Contains(TESTABLE_CONTROLLER_TYPE) && !requestItems.Contains(CONTROLLER_UNDER_TEST))
                 {
-                    if (returnValue == null)
-                    {
-                        returnValue = TryResolveTestController(requestContext, controllerName);
-                    }
+                    if (returnValue == null) returnValue = TryResolveTestController(requestContext, controllerName);
 
                     UpdateControllersInRequestContext(requestContext, GetControllerUnderTest(returnValue), returnValue);
                 }
@@ -64,13 +57,13 @@ namespace ApprovalTests.Asp.Mvc.Bindings
             var action = requestContext.RouteData.Values.GetValueOrDefault("action") + "";
             if ("ApprovalTests".Equals(controller, StringComparison.InvariantCultureIgnoreCase)
                 && "Echo".Equals(action, StringComparison.InvariantCultureIgnoreCase))
-            {
-                returnValue = GetContentResponseMessageTypeController(requestContext.RouteData.Values.GetValueOrDefault("id") + "", "Echo", requestContext);
-            }
+                returnValue = GetContentResponseMessageTypeController(
+                    requestContext.RouteData.Values.GetValueOrDefault("id") + "", "Echo", requestContext);
             return returnValue;
         }
 
-        private Type GetContentResponseMessageTypeController(string theMessage, string action, RequestContext requestContext)
+        private Type GetContentResponseMessageTypeController(string theMessage, string action,
+            RequestContext requestContext)
         {
             requestContext.RouteData.Values["theMessage"] = theMessage;
             requestContext.RouteData.Values["action"] = action;
@@ -107,13 +100,9 @@ namespace ApprovalTests.Asp.Mvc.Bindings
 
             var assemblyPath = requestContext.HttpContext.Request.QueryString["assemblyPath"];
             if (!string.IsNullOrEmpty(assemblyPath) && isAssembyAllowed(assemblyPath))
-            {
                 returnValue = Assembly.LoadFile(assemblyPath).GetControllerType(className);
-            }
             else
-            {
                 throw new IllegalAssemblyException(assemblyPath);
-            }
 
             return returnValue;
         }
@@ -127,13 +116,12 @@ namespace ApprovalTests.Asp.Mvc.Bindings
         {
             var contextItems = requestContext.HttpContext.Items;
             if (contextItems.Contains(TESTABLE_CONTROLLER_TYPE) && contextItems.Contains(CONTROLLER_UNDER_TEST))
-            {
                 try
                 {
                     var instance =
                         (Controller)
-                            Activator.CreateInstance(contextItems[TESTABLE_CONTROLLER_TYPE] as Type,
-                                new object[] { base.GetControllerInstance(requestContext, contextItems[CONTROLLER_UNDER_TEST] as Type) });
+                        Activator.CreateInstance(contextItems[TESTABLE_CONTROLLER_TYPE] as Type,
+                            base.GetControllerInstance(requestContext, contextItems[CONTROLLER_UNDER_TEST] as Type));
 
                     contextItems.Remove(TESTABLE_CONTROLLER_TYPE);
                     contextItems.Remove(CONTROLLER_UNDER_TEST);
@@ -142,14 +130,12 @@ namespace ApprovalTests.Asp.Mvc.Bindings
                 }
                 catch (TargetInvocationException ex)
                 {
-                    var type = GetContentResponseMessageTypeController(ex.InnerException.Message, "DisplayAssemblyNotReferedInMainProject", requestContext);
+                    var type = GetContentResponseMessageTypeController(ex.InnerException.Message,
+                        "DisplayAssemblyNotReferedInMainProject", requestContext);
                     return base.GetControllerInstance(requestContext, type);
                 }
-            }
-            else
-            {
-                return base.GetControllerInstance(requestContext, controllerType);
-            }
+
+            return base.GetControllerInstance(requestContext, controllerType);
         }
     }
 }

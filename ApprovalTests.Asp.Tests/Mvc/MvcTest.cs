@@ -2,16 +2,14 @@
 using ApprovalTests.Asp.Mvc;
 using ApprovalTests.Reporters;
 using ApprovalUtilities.Asp.Mvc;
-using CassiniDev;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MvcApplication1;
 using MvcApplication1.Controllers;
 using MvcApplication1.Models;
 
 namespace ApprovalTests.Asp.Tests.Mvc
 {
     [TestClass]
-    [UseReporter(typeof (DiffReporter), typeof (FileLauncherReporter))]
+    [UseReporter(typeof(DiffReporter), typeof(FileLauncherReporter))]
     public class MvcTest
     {
         //TODO: Note: We are using ApprovalTests.Asp.Tests.AssemblyStart. 
@@ -49,7 +47,7 @@ namespace ApprovalTests.Asp.Tests.Mvc
 
         public ActionResult TestName()
         {
-            return ControllerUnderTest.SaveName(new Person { Name = "Henrik" });
+            return ControllerUnderTest.SaveName(new Person {Name = "Henrik"});
         }
 
         public ActionResult TestToken()

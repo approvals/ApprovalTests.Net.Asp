@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <package>
   <metadata>
     <id>ApprovalTests.Asp</id>
     <version>$version$</version>
     <description>
       Utilities for unit testing Asp and Asp.Mvc views and routes.
-	  Builds on ApprovalTests
+      Builds on ApprovalTests
     </description>
     <language>en-US</language>
     <authors>Llewellyn Falco &amp; Naveem Kumar Lokesh &amp; James R. Counts</authors>
