@@ -3,7 +3,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/5anju45px3p3twak?svg=true)](https://ci.appveyor.com/project/isidore/approvaltests-net-asp) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![NuGet Status](http://img.shields.io/nuget/v/ApprovalTests.svg?style=flat)](https://www.nuget.org/packages/ApprovalTests.asp)
 
 
-Allows you to write simple tests againist Asp & Mvc pages.
+Allows you to write simple tests against Asp & Mvc pages.
 
 Mvc Pages
 ---
@@ -54,11 +54,11 @@ Available on NuGet
 ## LICENSE
 [Apache 2.0 License](https://github.com/SignalR/SignalR/blob/master/LICENSE.md)
 
-Contributers
+Contributors
 ---
 The vast majority of this was created by @jamesrcounts & @Lnknaveen with help from @isidore
 
-## Explict Names
+## Explicit Names
 If you need to add seams into your production code for testing, you will need the following added to you runtime
 
 ```c#
