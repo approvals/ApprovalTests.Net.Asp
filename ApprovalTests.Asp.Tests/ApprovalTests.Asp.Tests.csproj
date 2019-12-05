@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="ApprovalUtilities" Version="4.2.2" />
     <PackageReference Include="ApprovalTests" Version="4.2.0" />
-    <PackageReference Include="MarkdownSnippets.MsBuild" Version="16.5.0">
+    <PackageReference Include="MarkdownSnippets.MsBuild" Version="17.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
