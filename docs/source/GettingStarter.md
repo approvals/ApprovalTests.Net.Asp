@@ -8,9 +8,7 @@ To change this file edit the source file and then run MarkdownSnippets.
 <!-- toc -->
 ## Contents
 
-  * [Setting up the server](#setting-up-the-server)
-<!-- endtoc -->
-
+  * [Setting up the server](#setting-up-the-server)<!-- endtoc -->
  
 ## Setting up the server
 
@@ -19,5 +17,5 @@ To change this file edit the source file and then run MarkdownSnippets.
 ```cs
 MvcApprovals.VerifyApprovalBootstrap();
 ```
-<sup>[snippet source](/ApprovalTests.Asp.Tests/Mvc/EchoTest.cs#L12-L14) / [anchor](#snippet-verify_bootstrap_configured)</sup>
+<sup><a href='/ApprovalTests.Asp.Tests/Mvc/EchoTest.cs#L12-L14' title='File snippet `verify_bootstrap_configured` was extracted from'>snippet source</a> | <a href='#snippet-verify_bootstrap_configured' title='Navigate to start of snippet `verify_bootstrap_configured`'>anchor</a></sup>
 <!-- endsnippet -->
