@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ApprovalUtilities" Version="4.2.2" />
+    <PackageReference Include="ApprovalUtilities" Version="4.5.2" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
   </ItemGroup>
 
