@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ApprovalUtilities" Version="5.2.4" />
+    <PackageReference Include="ApprovalUtilities" Version="5.2.5" />
     <PackageReference Include="ApprovalTests" Version="5.2.4" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="18.0.0">
       <PrivateAssets>all</PrivateAssets>
