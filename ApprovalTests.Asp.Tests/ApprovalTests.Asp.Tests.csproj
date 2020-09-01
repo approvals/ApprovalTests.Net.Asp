@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="ApprovalUtilities" Version="5.4.1" />
-    <PackageReference Include="ApprovalTests" Version="5.4.0" />
+    <PackageReference Include="ApprovalTests" Version="5.4.1" />
     <PackageReference Include="MarkdownSnippets.MsBuild" Version="19.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
