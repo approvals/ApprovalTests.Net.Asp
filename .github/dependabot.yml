@@ -1,0 +1,28 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: MarkdownSnippets.MsBuild
+    versions:
+    - 22.0.3
+    - 23.0.1
+    - 23.0.2
+    - 23.1.0
+    - 23.1.1
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.8.3
+    - 16.9.1
+  - dependency-name: MSTest.TestAdapter
+    versions:
+    - 2.1.2
+    - 2.2.1
+    - 2.2.2
+  - dependency-name: System.Drawing.Common
+    versions:
+    - 5.0.0
+    - 5.0.1
